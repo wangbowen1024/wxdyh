@@ -23,10 +23,4 @@ public class RequestTextMessage extends BaseRequestMessage{
         this.content = content;
     }
 
-    @Override
-    public String toString() {
-        return "RequestTextMessage{" +
-                "content='" + content + '\'' +
-                '}';
-    }
 }

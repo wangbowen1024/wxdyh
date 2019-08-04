@@ -22,15 +22,6 @@ public class ResponseTextMessage extends BaseResponseMessage implements Serializ
     @XmlElement(name = "Content")
     private String content;
 
-    public ResponseTextMessage() {
-    }
-
-    public ResponseTextMessage(BaseResponseMessage base) {
-        super.setToUserName(base.getToUserName());
-        super.setFromUserName(base.getFromUserName());
-        super.setCreateTime(base.getCreateTime());
-    }
-
     public String getContent() {
         return content;
     }

@@ -75,14 +75,4 @@ public class BaseRequestMessage implements Serializable {
         this.msgId = msgId;
     }
 
-    @Override
-    public String toString() {
-        return "BaseRequestMessage{" +
-                "toUserName='" + toUserName + '\'' +
-                ", fromUserName='" + fromUserName + '\'' +
-                ", createTime='" + createTime + '\'' +
-                ", msgType='" + msgType + '\'' +
-                ", msgId='" + msgId + '\'' +
-                '}';
-    }
 }

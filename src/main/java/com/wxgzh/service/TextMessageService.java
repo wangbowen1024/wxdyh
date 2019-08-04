@@ -1,5 +1,7 @@
 package com.wxgzh.service;
 
+import com.wxgzh.domain.ResponseTextMessage;
+
 /**
  * TextMessageService class
  *
@@ -14,5 +16,5 @@ public interface TextMessageService {
      * @param question
      * @return
      */
-    String getRobotReply(String question);
+    ResponseTextMessage getRobotReply(String question);
 }

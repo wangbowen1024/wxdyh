@@ -2,6 +2,7 @@ package com.wxgzh.controller;
 
 import com.wxgzh.domain.BaseResponseMessage;
 import com.wxgzh.domain.RequestTextMessage;
+import com.wxgzh.domain.RequestVoiceMessage;
 import com.wxgzh.domain.ResponseTextMessage;
 import com.wxgzh.enums.ConfigInfo;
 import com.wxgzh.enums.Message;
@@ -66,22 +67,35 @@ public class WeiXinApiController {
 
         Map<String, Object> params = XmlUtil.xmlStrToMap(request);
         Object result = null;
-        Message messageType = null;
+        Message setMsgType = null;
         // 获取消息类型
         String msgType = (String) params.get("MsgType");
-        // 如果是文本消息
         if (Message.TEXT.getMsgType().equalsIgnoreCase(msgType)) {
-            messageType = Message.TEXT;
+            /**
+             * 如果是文本消息
+             */
             RequestTextMessage message = (RequestTextMessage) XmlUtil.mapToBean(params, RequestTextMessage.class);
             // 获取请求内容
             String content = message.getContent();
             // 解析内容匹配业务条件
             if (content.length() > 0) {
+                // 获取返回消息对象
                 result = textMessageService.getRobotReply(content);
+                // 设置希望返回的消息类型
+                setMsgType = Message.TEXT;
             }
+        } else if (Message.VOICE.getMsgType().equalsIgnoreCase(msgType)) {
+            /**
+             * 如果是语音消息
+             */
+            RequestVoiceMessage message = (RequestVoiceMessage) XmlUtil.mapToBean(params, RequestVoiceMessage.class);
+            String recognition = message.getRecognition();
+            // 获取返回消息对象
+            result = textMessageService.getRobotReply(recognition);
+            setMsgType = Message.TEXT;
         }
         // 返回消息
-        return result == null ? null : responseParse(result, messageType, (String) params.get("FromUserName"));
+        return result == null ? null : responseParse(result, setMsgType, (String) params.get("FromUserName"));
     }
 
     /**
@@ -100,8 +114,8 @@ public class WeiXinApiController {
 
         // 如果返回文本
         if (Message.TEXT.equals(msgType)) {
-            ResponseTextMessage response = new ResponseTextMessage(base);
-            response.setContent((String) obj);
+            ResponseTextMessage response = (ResponseTextMessage) obj;
+            response.setBase(base);
             return response;
         }
 
