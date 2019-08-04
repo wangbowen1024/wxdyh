@@ -28,7 +28,7 @@ import java.util.Map;
  * @author BowenWang
  * @date 2019/08/03
  */
-public class HttpUtils {
+public class HttpUtil {
 
     /**
      * 发送GET请求

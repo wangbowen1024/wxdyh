@@ -1,5 +1,6 @@
 package com.wxgzh.test;
 
+import com.wxgzh.utils.UuidUtil;
 import org.junit.Test;
 
 import java.util.UUID;
@@ -16,9 +17,6 @@ public class UUIDTest {
      */
     @Test
     public void testUUID() {
-        UUID uuid = UUID.randomUUID();
-        System.out.println(uuid);
-        String s = uuid.toString().replaceAll("-", "");
-        System.out.println(s);
+        System.out.println(UuidUtil.getUUID());
     }
 }

@@ -1,5 +1,8 @@
 package com.wxgzh.utils;
 
+import com.wxgzh.domain.ConfigInfo;
+
+import javax.security.auth.login.Configuration;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
@@ -10,10 +13,6 @@ import java.security.NoSuchAlgorithmException;
  * @date 2019/08/03
  */
 public class SignUtil {
-    /**
-     * 与接口配置信息中的Token要一致
-     */
-    private static String token = "23f2401862304246b963f92117515f7a";
 
     /**
      * 验证签名
@@ -23,11 +22,9 @@ public class SignUtil {
      * @param nonce
      * @return
      */
-    public static boolean checkSignature(String signature, String timestamp,
-                                         String nonce) {
-        String[] arr = new String[] { token, timestamp, nonce };
+    public static boolean checkSignature(String signature, String timestamp,String nonce) {
+        String[] arr = new String[]{ConfigInfo.token, timestamp, nonce};
         // 将token、timestamp、nonce三个参数进行字典序排序
-        //Arrays.sort(arr);
         sort(arr);
         StringBuilder content = new StringBuilder();
         for (int i = 0; i < arr.length; i++) {
@@ -47,7 +44,7 @@ public class SignUtil {
 
         content = null;
         // 将sha1加密后的字符串可与signature对比，标识该请求来源于微信
-        return tmpStr != null ? tmpStr.equals(signature.toUpperCase()) : false;
+        return tmpStr != null && tmpStr.equals(signature.toUpperCase());
     }
 
     /**
@@ -57,11 +54,11 @@ public class SignUtil {
      * @return
      */
     private static String byteToStr(byte[] byteArray) {
-        String strDigest = "";
-        for (int i = 0; i < byteArray.length; i++) {
-            strDigest += byteToHexStr(byteArray[i]);
+        StringBuilder strDigest = new StringBuilder();
+        for (byte aByteArray : byteArray) {
+            strDigest.append(byteToHexStr(aByteArray));
         }
-        return strDigest;
+        return strDigest.toString();
     }
 
     /**
@@ -71,17 +68,17 @@ public class SignUtil {
      * @return
      */
     private static String byteToHexStr(byte mByte) {
-        char[] Digit = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A',
+        char[] digit = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A',
                 'B', 'C', 'D', 'E', 'F' };
         char[] tempArr = new char[2];
-        tempArr[0] = Digit[(mByte >>> 4) & 0X0F];
-        tempArr[1] = Digit[mByte & 0X0F];
+        tempArr[0] = digit[(mByte >>> 4) & 0X0F];
+        tempArr[1] = digit[mByte & 0X0F];
 
         String s = new String(tempArr);
         return s;
     }
 
-    public static void sort(String a[]) {
+    private static void sort(String a[]) {
         for (int i = 0; i < a.length - 1; i++) {
             for (int j = i + 1; j < a.length; j++) {
                 if (a[j].compareTo(a[i]) < 0) {

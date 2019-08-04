@@ -7,25 +7,107 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bf53be15-ad46-4670-9a16-54b9e26b87b9" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/wxgzh/domain/RequestVoiceMessage.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/wxgzh/dao/ImageDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/wxgzh/dao/TextDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/wxgzh/dao/VoiceDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/wxgzh/domain/AutoReply.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/wxgzh/domain/ConfigInfo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/wxgzh/domain/RequestImage.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/wxgzh/domain/ResponseImage.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/wxgzh/domain/miniclass/Image.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/wxgzh/service/ImageService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/wxgzh/service/TextService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/wxgzh/service/VoiceService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/wxgzh/service/impl/ImageServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/wxgzh/service/impl/TextServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/wxgzh/service/impl/VoiceServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/wxgzh/utils/UuidUtil.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/jdbcConfig.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/com/wxgzh/test/ImageServiceTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/com/wxgzh/test/TextServiceTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/com/wxgzh/test/VoiceServiceTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/axis.log" beforeDir="false" afterPath="$PROJECT_DIR$/axis.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/wxgzh/controller/WeiXinApiController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wxgzh/controller/WeiXinApiController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/wxgzh/domain/BaseRequestMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wxgzh/domain/BaseRequestMessage.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/wxgzh/domain/BaseResponseMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wxgzh/domain/BaseResponseMessage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/wxgzh/domain/RequestTextMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wxgzh/domain/RequestTextMessage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/wxgzh/domain/ResponseTextMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wxgzh/domain/ResponseTextMessage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/wxgzh/service/TextMessageService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wxgzh/service/TextMessageService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/wxgzh/service/impl/TextMessageServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wxgzh/service/impl/TextMessageServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/WX_GZH/WEB-INF/classes/com/wxgzh/controller/WeiXinApiController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/WX_GZH/WEB-INF/classes/com/wxgzh/controller/WeiXinApiController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/WX_GZH/WEB-INF/classes/com/wxgzh/domain/BaseResponseMessage.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/WX_GZH/WEB-INF/classes/com/wxgzh/domain/BaseResponseMessage.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/WX_GZH/WEB-INF/classes/com/wxgzh/domain/ResponseTextMessage.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/WX_GZH/WEB-INF/classes/com/wxgzh/domain/ResponseTextMessage.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/WX_GZH/WEB-INF/classes/com/wxgzh/service/TextMessageService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/WX_GZH/WEB-INF/classes/com/wxgzh/service/TextMessageService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/WX_GZH/WEB-INF/classes/com/wxgzh/service/impl/TextMessageServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/WX_GZH/WEB-INF/classes/com/wxgzh/service/impl/TextMessageServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/wxgzh/controller/WeiXinApiController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/wxgzh/controller/WeiXinApiController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/wxgzh/domain/BaseResponseMessage.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/wxgzh/domain/BaseResponseMessage.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/wxgzh/domain/ResponseTextMessage.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/wxgzh/domain/ResponseTextMessage.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/wxgzh/service/TextMessageService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/wxgzh/service/TextMessageService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/wxgzh/service/impl/TextMessageServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/wxgzh/service/impl/TextMessageServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/wxgzh/domain/RequestTextMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wxgzh/domain/RequestText.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/wxgzh/domain/RequestVoiceMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wxgzh/domain/RequestVoice.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/wxgzh/domain/ResponseTextMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wxgzh/domain/ResponseText.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/wxgzh/enums/ConfigInfo.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/wxgzh/enums/Message.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wxgzh/enums/Message.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/wxgzh/service/TextMessageService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/wxgzh/service/impl/TextMessageServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/wxgzh/utils/HttpUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wxgzh/utils/HttpUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/wxgzh/utils/SignUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wxgzh/utils/SignUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/applicationContext.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/applicationContext.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/com/wxgzh/test/HttpClientTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/com/wxgzh/test/HttpClientTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/com/wxgzh/test/UUIDTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/com/wxgzh/test/UUIDTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WX_GZH/META-INF/MANIFEST.MF" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WX_GZH/WEB-INF/classes/applicationContext.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WX_GZH/WEB-INF/classes/com/wxgzh/controller/WeiXinApiController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WX_GZH/WEB-INF/classes/com/wxgzh/domain/BaseRequestMessage.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WX_GZH/WEB-INF/classes/com/wxgzh/domain/BaseResponseMessage.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WX_GZH/WEB-INF/classes/com/wxgzh/domain/RequestTextMessage.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WX_GZH/WEB-INF/classes/com/wxgzh/domain/ResponseTextMessage.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WX_GZH/WEB-INF/classes/com/wxgzh/enums/ConfigInfo.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WX_GZH/WEB-INF/classes/com/wxgzh/enums/Message.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WX_GZH/WEB-INF/classes/com/wxgzh/service/TextMessageService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WX_GZH/WEB-INF/classes/com/wxgzh/service/impl/TextMessageServiceImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WX_GZH/WEB-INF/classes/com/wxgzh/utils/HttpUtils.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WX_GZH/WEB-INF/classes/com/wxgzh/utils/SignUtil.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WX_GZH/WEB-INF/classes/com/wxgzh/utils/XmlUtil.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WX_GZH/WEB-INF/classes/log4j.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WX_GZH/WEB-INF/classes/springmvc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WX_GZH/WEB-INF/lib/aspectjweaver-1.6.8.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WX_GZH/WEB-INF/lib/c3p0-0.9.1.2.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WX_GZH/WEB-INF/lib/commons-codec-1.10.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WX_GZH/WEB-INF/lib/commons-logging-1.2.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WX_GZH/WEB-INF/lib/dom4j-1.6.1.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WX_GZH/WEB-INF/lib/fastjson-1.2.46.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WX_GZH/WEB-INF/lib/hamcrest-core-1.3.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WX_GZH/WEB-INF/lib/httpclient-4.5.5.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WX_GZH/WEB-INF/lib/httpcore-4.4.9.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WX_GZH/WEB-INF/lib/jstl-1.2.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WX_GZH/WEB-INF/lib/junit-4.12.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WX_GZH/WEB-INF/lib/log4j-1.2.12.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WX_GZH/WEB-INF/lib/mybatis-3.4.5.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WX_GZH/WEB-INF/lib/mybatis-spring-1.3.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WX_GZH/WEB-INF/lib/mysql-connector-java-5.1.6.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WX_GZH/WEB-INF/lib/slf4j-api-1.6.6.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WX_GZH/WEB-INF/lib/slf4j-log4j12-1.6.6.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WX_GZH/WEB-INF/lib/spring-aop-5.0.2.RELEASE.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WX_GZH/WEB-INF/lib/spring-beans-5.0.2.RELEASE.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WX_GZH/WEB-INF/lib/spring-context-5.0.2.RELEASE.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WX_GZH/WEB-INF/lib/spring-core-5.0.2.RELEASE.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WX_GZH/WEB-INF/lib/spring-expression-5.0.2.RELEASE.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WX_GZH/WEB-INF/lib/spring-jcl-5.0.2.RELEASE.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WX_GZH/WEB-INF/lib/spring-jdbc-5.0.2.RELEASE.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WX_GZH/WEB-INF/lib/spring-test-5.0.2.RELEASE.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WX_GZH/WEB-INF/lib/spring-tx-5.0.2.RELEASE.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WX_GZH/WEB-INF/lib/spring-web-5.0.2.RELEASE.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WX_GZH/WEB-INF/lib/spring-webmvc-5.0.2.RELEASE.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WX_GZH/WEB-INF/lib/xml-apis-1.0.b2.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WX_GZH/WEB-INF/lib/xpp3_min-1.1.4c.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WX_GZH/WEB-INF/lib/xstream-1.3.1.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WX_GZH/WEB-INF/web.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WX_GZH/index.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/applicationContext.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/wxgzh/controller/WeiXinApiController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/wxgzh/domain/BaseRequestMessage.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/wxgzh/domain/BaseResponseMessage.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/wxgzh/domain/RequestTextMessage.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/wxgzh/domain/ResponseTextMessage.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/wxgzh/enums/ConfigInfo.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/wxgzh/enums/Message.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/wxgzh/service/TextMessageService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/wxgzh/service/impl/TextMessageServiceImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/wxgzh/utils/HttpUtils.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/wxgzh/utils/SignUtil.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/wxgzh/utils/XmlUtil.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/log4j.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/springmvc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/com/wxgzh/test/HttpClientTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/com/wxgzh/test/UUIDTest.class" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -47,40 +129,44 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="dummy" value="62" />
+          <entry key="dummy" value="79" />
           <entry key="gitignore" value="7" />
-          <entry key="java" value="4628" />
-          <entry key="jsp" value="25" />
-          <entry key="xml" value="25" />
+          <entry key="java" value="7674" />
+          <entry key="jsp" value="27" />
+          <entry key="properties" value="17" />
+          <entry key="xml" value="50" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="Git file" value="7" />
-          <entry key="JAVA" value="4628" />
-          <entry key="JSP" value="25" />
-          <entry key="PLAIN_TEXT" value="62" />
-          <entry key="XML" value="25" />
+          <entry key="JAVA" value="7674" />
+          <entry key="JSP" value="27" />
+          <entry key="PLAIN_TEXT" value="79" />
+          <entry key="Properties" value="17" />
+          <entry key="XML" value="50" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="class" value="3" />
           <entry key="gitignore" value="1" />
-          <entry key="java" value="40" />
-          <entry key="jsp" value="2" />
+          <entry key="java" value="94" />
+          <entry key="jsp" value="3" />
           <entry key="log" value="1" />
-          <entry key="xml" value="4" />
+          <entry key="properties" value="1" />
+          <entry key="xml" value="5" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="CLASS" value="3" />
           <entry key="Git file" value="1" />
-          <entry key="JAVA" value="40" />
-          <entry key="JSP" value="2" />
+          <entry key="JAVA" value="94" />
+          <entry key="JSP" value="3" />
           <entry key="PLAIN_TEXT" value="1" />
-          <entry key="XML" value="4" />
+          <entry key="Properties" value="1" />
+          <entry key="XML" value="5" />
         </counts>
       </usages-collector>
     </session>
@@ -90,8 +176,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/wxgzh/controller/WeiXinApiController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="269">
-              <caret line="92" column="23" lean-forward="true" selection-start-line="92" selection-start-column="23" selection-end-line="92" selection-end-column="23" />
+            <state relative-caret-position="288">
+              <caret line="142" column="1" selection-start-line="142" selection-start-column="1" selection-end-line="142" selection-end-column="1" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -100,42 +186,56 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/wxgzh/domain/RequestVoiceMessage.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/wxgzh/domain/ResponseImage.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="419">
-              <caret line="49" column="18" selection-start-line="49" selection-start-column="18" selection-end-line="49" selection-end-column="18" />
+            <state relative-caret-position="102">
+              <caret line="14" column="32" selection-start-line="14" selection-start-column="32" selection-end-line="14" selection-end-column="32" />
               <folding>
-                <element signature="e#372#373#0" expanded="true" />
-                <element signature="e#402#403#0" expanded="true" />
-                <element signature="e#448#449#0" expanded="true" />
-                <element signature="e#486#487#0" expanded="true" />
-                <element signature="e#519#520#0" expanded="true" />
-                <element signature="e#548#549#0" expanded="true" />
-                <element signature="e#592#593#0" expanded="true" />
-                <element signature="e#628#629#0" expanded="true" />
-                <element signature="e#666#667#0" expanded="true" />
-                <element signature="e#700#701#0" expanded="true" />
-                <element signature="e#754#755#0" expanded="true" />
-                <element signature="e#800#801#0" expanded="true" />
+                <element signature="imports" expanded="true" />
+                <element signature="e#461#462#0" expanded="true" />
+                <element signature="e#489#490#0" expanded="true" />
+                <element signature="e#530#531#0" expanded="true" />
+                <element signature="e#564#565#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/wxgzh/domain/BaseRequestMessage.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/wxgzh/domain/miniclass/Image.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="419">
-              <caret line="77" column="1" lean-forward="true" selection-start-line="77" selection-start-column="1" selection-end-line="77" selection-end-column="1" />
+            <state relative-caret-position="352">
+              <caret line="24" column="44" selection-start-line="24" selection-start-column="44" selection-end-line="24" selection-end-column="44" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#285#286#0" expanded="true" />
+                <element signature="e#315#316#0" expanded="true" />
+                <element signature="e#399#400#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/wxgzh/domain/RequestTextMessage.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/wxgzh/domain/ResponseText.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="394">
-              <caret line="24" lean-forward="true" selection-start-line="24" selection-end-line="24" />
+            <state relative-caret-position="-16">
+              <caret line="15" selection-start-line="15" selection-end-line="15" selection-end-column="29" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/wxgzh/domain/ConfigInfo.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="352">
+              <caret line="54" column="35" selection-start-line="54" selection-start-column="35" selection-end-line="54" selection-end-column="35" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -143,8 +243,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/wxgzh/enums/Message.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="13" column="16" selection-start-line="13" selection-start-column="11" selection-end-line="13" selection-end-column="16" />
+            <state relative-caret-position="43">
+              <caret line="12" column="20" selection-start-line="12" selection-start-column="20" selection-end-line="12" selection-end-column="20" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/wxgzh/domain/RequestText.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="393">
+              <caret line="23" column="5" selection-start-line="23" selection-start-column="5" selection-end-line="23" selection-end-column="5" />
             </state>
           </provider>
         </entry>
@@ -152,22 +261,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/wxgzh/domain/BaseResponseMessage.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-256">
-              <caret line="42" column="18" lean-forward="true" selection-start-line="42" selection-start-column="18" selection-end-line="42" selection-end-column="18" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#1004#1005#0" expanded="true" />
-                <element signature="e#1039#1040#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/wxgzh/domain/ResponseTextMessage.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="462">
-              <caret line="33" lean-forward="true" selection-start-line="33" selection-end-line="33" />
+            <state relative-caret-position="134">
+              <caret line="38" column="27" selection-start-line="38" selection-start-column="27" selection-end-line="38" selection-end-column="27" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -176,10 +271,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/wxgzh/service/impl/TextMessageServiceImpl.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/wxgzh/service/TextService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="462">
-              <caret line="28" lean-forward="true" selection-start-line="28" selection-end-line="28" />
+            <state relative-caret-position="400">
+              <caret line="32" column="47" selection-start-line="32" selection-start-column="47" selection-end-line="32" selection-end-column="47" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -188,10 +283,13 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/wxgzh/service/TextMessageService.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/wxgzh/service/impl/TextServiceImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="412">
-              <caret line="18" column="23" selection-start-line="18" selection-start-column="4" selection-end-line="18" selection-end-column="23" />
+            <state relative-caret-position="448">
+              <caret line="51" column="5" selection-start-line="51" selection-start-column="5" selection-end-line="51" selection-end-column="5" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -202,9 +300,9 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Jsp File" />
-        <option value="Interface" />
         <option value="Enum" />
         <option value="AnnotationType" />
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -215,34 +313,56 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/index.jsp" />
-        <option value="$PROJECT_DIR$/src/main/java/com/wxgzh/utils/SigUtil.java" />
-        <option value="$PROJECT_DIR$/src/test/com/wxgzh/test/WebClientTest.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/wxgzh/utils/HttpUtils.java" />
-        <option value="$PROJECT_DIR$/src/test/com/wxgzh/test/HttpClientTest.java" />
-        <option value="$PROJECT_DIR$/src/test/com/wxgzh/test/UUIDTest.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/wxgzh/utils/SignUtil.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/wxgzh/service/RobotService.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/wxgzh/service/impl/RobotService.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/wxgzh/utils/RobotService.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/wxgzh/utils/Constant.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/wxgzh/enums/Constant.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/wxgzh/enums/ConfigInfo.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/wxgzh/utils/Robot.java" />
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/wxgzh/annotation/Ailas.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/wxgzh/annotation/FieldAila.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/wxgzh/enums/Message.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/wxgzh/utils/XmlUtil.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/wxgzh/domain/RequestMessage.java" />
         <option value="$PROJECT_DIR$/.gitignore" />
-        <option value="$PROJECT_DIR$/src/main/java/com/wxgzh/service/TextMessageService.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/wxgzh/service/impl/TextMessageServiceImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/wxgzh/domain/ResponseTextMessage.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/wxgzh/domain/BaseResponseMessage.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/wxgzh/domain/RequestTextMessage.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/wxgzh/domain/BaseRequestMessage.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/wxgzh/enums/ConfigInfo.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/wxgzh/domain/AutoMessage.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/wxgzh/utils/SignUtil.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/wxgzh/domain/AutoReply.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/wxgzh/utils/UuidUtil.java" />
+        <option value="$PROJECT_DIR$/src/test/com/wxgzh/test/UUIDTest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/wxgzh/enums/Message.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/wxgzh/domain/RequestImageMessage.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/jdbc.properties" />
+        <option value="$PROJECT_DIR$/src/main/resources/applicationContext.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/com/wxgzh/test/ImageDaoTest.java" />
+        <option value="$PROJECT_DIR$/src/test/com/wxgzh/test/ImageDaoTest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/wxgzh/service/ImageMessageService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/wxgzh/service/impl/ImageMessageServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/test/com/wxgzh/test/ImageServiceTest.java" />
+        <option value="$PROJECT_DIR$/src/test/com/wxgzh/test/HttpClientTest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/wxgzh/service/TextMessageService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/wxgzh/dao/ImageDao.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/wxgzh/service/impl/TextMessageServiceImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/wxgzh/domain/RequestVoiceMessage.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/wxgzh/dao/TextDao.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/wxgzh/dao/VoiceDao.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/wxgzh/service/VoiceService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/wxgzh/service/impl/VoiceSeriveImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/wxgzh/service/impl/VoiceServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/test/com/wxgzh/test/VoiceServiceTest.java" />
+        <option value="$PROJECT_DIR$/src/test/com/wxgzh/test/TextServiceTest.java" />
+        <option value="$PROJECT_DIR$/src/main/webapp/index.jsp" />
+        <option value="$PROJECT_DIR$/src/main/java/com/wxgzh/domain/ResponseText.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/wxgzh/domain/Image.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/wxgzh/domain/miniclass/Image.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/wxgzh/domain/ResponseImage.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/wxgzh/service/TextService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/wxgzh/service/impl/TextServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/wxgzh/domain/BaseResponseMessage.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/wxgzh/domain/ConfigInfo.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/wxgzh/controller/WeiXinApiController.java" />
       </list>
     </option>
@@ -366,7 +486,26 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="wxgzh" type="462c0819:PsiDirectoryNode" />
+              <item name="dao" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="WX_GZH" type="b2602c69:ProjectViewProjectNode" />
+              <item name="WX_GZH" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="wxgzh" type="462c0819:PsiDirectoryNode" />
               <item name="domain" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="WX_GZH" type="b2602c69:ProjectViewProjectNode" />
+              <item name="WX_GZH" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="wxgzh" type="462c0819:PsiDirectoryNode" />
+              <item name="domain" type="462c0819:PsiDirectoryNode" />
+              <item name="miniclass" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="WX_GZH" type="b2602c69:ProjectViewProjectNode" />
@@ -401,36 +540,12 @@
               <item name="WX_GZH" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="wxgzh" type="462c0819:PsiDirectoryNode" />
-              <item name="utils" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="WX_GZH" type="b2602c69:ProjectViewProjectNode" />
-              <item name="WX_GZH" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="WX_GZH" type="b2602c69:ProjectViewProjectNode" />
-              <item name="WX_GZH" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="webapp" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="WX_GZH" type="b2602c69:ProjectViewProjectNode" />
               <item name="WX_GZH" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="webapp" type="462c0819:PsiDirectoryNode" />
-              <item name="WEB-INF" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="WX_GZH" type="b2602c69:ProjectViewProjectNode" />
-              <item name="WX_GZH" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="test" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -439,11 +554,6 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="test" type="462c0819:PsiDirectoryNode" />
               <item name="test" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="WX_GZH" type="b2602c69:ProjectViewProjectNode" />
-              <item name="WX_GZH" type="462c0819:PsiDirectoryNode" />
-              <item name="target" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -456,7 +566,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1564896819553" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1564938609795" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../../JAVE/MJULittleHelper" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -483,7 +593,7 @@
     </option>
   </component>
   <component name="RunManager" selected="Tomcat Server.Tomcat9">
-    <configuration name="HttpClientTest.testDoGet" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ImageServiceTest.saveImageInfo" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="WX_GZH" />
       <extension name="coverage">
         <pattern>
@@ -492,14 +602,14 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="com.wxgzh.test" />
-      <option name="MAIN_CLASS_NAME" value="com.wxgzh.test.HttpClientTest" />
-      <option name="METHOD_NAME" value="testDoGet" />
+      <option name="MAIN_CLASS_NAME" value="com.wxgzh.test.ImageServiceTest" />
+      <option name="METHOD_NAME" value="saveImageInfo" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="HttpClientTest.testDoPost" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ImageServiceTest.testSaveImage" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="WX_GZH" />
       <extension name="coverage">
         <pattern>
@@ -508,8 +618,24 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="com.wxgzh.test" />
-      <option name="MAIN_CLASS_NAME" value="com.wxgzh.test.HttpClientTest" />
-      <option name="METHOD_NAME" value="testDoPost" />
+      <option name="MAIN_CLASS_NAME" value="com.wxgzh.test.ImageServiceTest" />
+      <option name="METHOD_NAME" value="testSaveImage" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TextServiceTest.testSaveImage" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="WX_GZH" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.wxgzh.test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.wxgzh.test" />
+      <option name="MAIN_CLASS_NAME" value="com.wxgzh.test.TextServiceTest" />
+      <option name="METHOD_NAME" value="testSaveImage" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -526,6 +652,22 @@
       <option name="PACKAGE_NAME" value="com.wxgzh.test" />
       <option name="MAIN_CLASS_NAME" value="com.wxgzh.test.UUIDTest" />
       <option name="METHOD_NAME" value="testUUID" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="VoiceServiceTest.testSaveVoice" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="WX_GZH" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.wxgzh.test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.wxgzh.test" />
+      <option name="MAIN_CLASS_NAME" value="com.wxgzh.test.VoiceServiceTest" />
+      <option name="METHOD_NAME" value="testSaveVoice" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -607,15 +749,19 @@
     </configuration>
     <list>
       <item itemvalue="Tomcat Server.Tomcat9" />
-      <item itemvalue="JUnit.HttpClientTest.testDoGet" />
-      <item itemvalue="JUnit.HttpClientTest.testDoPost" />
       <item itemvalue="JUnit.UUIDTest.testUUID" />
+      <item itemvalue="JUnit.ImageServiceTest.saveImageInfo" />
+      <item itemvalue="JUnit.ImageServiceTest.testSaveImage" />
+      <item itemvalue="JUnit.TextServiceTest.testSaveImage" />
+      <item itemvalue="JUnit.VoiceServiceTest.testSaveVoice" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.VoiceServiceTest.testSaveVoice" />
+        <item itemvalue="JUnit.TextServiceTest.testSaveImage" />
+        <item itemvalue="JUnit.ImageServiceTest.testSaveImage" />
+        <item itemvalue="JUnit.ImageServiceTest.saveImageInfo" />
         <item itemvalue="JUnit.UUIDTest.testUUID" />
-        <item itemvalue="JUnit.HttpClientTest.testDoPost" />
-        <item itemvalue="JUnit.HttpClientTest.testDoGet" />
       </list>
     </recent_temporary>
   </component>
@@ -630,50 +776,49 @@
       <option name="presentableId" value="Default" />
       <updated>1564808967145</updated>
       <workItem from="1564808971605" duration="1554000" />
-      <workItem from="1564829657097" duration="31948000" />
+      <workItem from="1564829657097" duration="57931000" />
     </task>
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="HttpClientTest_testDoPost - 2019.08.03 at 20h 05m 33s.xml">
-      <configuration name="HttpClientTest.testDoPost" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="HttpClientTest_testDoPost - 2019.08.03 at 20h 11m 59s.xml">
-      <configuration name="HttpClientTest.testDoPost" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="HttpClientTest_testDoPost - 2019.08.03 at 20h 12m 35s.xml">
-      <configuration name="HttpClientTest.testDoPost" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="HttpClientTest_testDoPost - 2019.08.03 at 20h 14m 57s.xml">
-      <configuration name="HttpClientTest.testDoPost" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="HttpClientTest_testDoPost - 2019.08.03 at 20h 15m 09s.xml">
-      <configuration name="HttpClientTest.testDoPost" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="HttpClientTest_testDoPost - 2019.08.03 at 20h 16m 27s.xml">
-      <configuration name="HttpClientTest.testDoPost" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="HttpClientTest_testDoPost - 2019.08.03 at 20h 16m 37s.xml">
-      <configuration name="HttpClientTest.testDoPost" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="HttpClientTest_testDoPost - 2019.08.03 at 20h 20m 54s.xml">
-      <configuration name="HttpClientTest.testDoPost" configurationId="JUnit" />
-    </history-entry>
     <history-entry file="HttpClientTest_testDoPost - 2019.08.03 at 20h 21m 12s.xml">
       <configuration name="HttpClientTest.testDoPost" configurationId="JUnit" />
     </history-entry>
     <history-entry file="UUIDTest_testUUID - 2019.08.03 at 20h 33m 04s.xml">
       <configuration name="UUIDTest.testUUID" configurationId="JUnit" />
     </history-entry>
+    <history-entry file="UUIDTest_testUUID - 2019.08.04 at 14h 28m 09s.xml">
+      <configuration name="UUIDTest.testUUID" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="UUIDTest_testUUID - 2019.08.04 at 20h 34m 02s.xml">
+      <configuration name="UUIDTest.testUUID" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="ImageDaoTest_saveImageInfo - 2019.08.04 at 21h 25m 51s.xml">
+      <configuration name="ImageDaoTest.saveImageInfo" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="ImageDaoTest_saveImageInfo - 2019.08.04 at 21h 26m 45s.xml">
+      <configuration name="ImageDaoTest.saveImageInfo" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="ImageDaoTest_saveImageInfo - 2019.08.04 at 21h 28m 54s.xml">
+      <configuration name="ImageDaoTest.saveImageInfo" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="ImageServiceTest_testSaveImage - 2019.08.04 at 21h 34m 14s.xml">
+      <configuration name="ImageServiceTest.testSaveImage" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="TextServiceTest_testSaveImage - 2019.08.04 at 21h 50m 16s.xml">
+      <configuration name="TextServiceTest.testSaveImage" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="VoiceServiceTest_testSaveVoice - 2019.08.04 at 22h 04m 35s.xml">
+      <configuration name="VoiceServiceTest.testSaveVoice" configurationId="JUnit" />
+    </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="33502000" />
+    <option name="totallyTimeSpent" value="59485000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1065" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19402985" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.19402985" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -683,7 +828,7 @@
       <window_info id="Web" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.3075269" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.43333334" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -692,7 +837,7 @@
       <window_info anchor="bottom" id="Spring" order="8" />
       <window_info anchor="bottom" id="Terminal" order="9" weight="0.33010754" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
-      <window_info anchor="bottom" id="Messages" order="11" weight="0.32975295" />
+      <window_info anchor="bottom" id="Messages" order="11" weight="0.32903227" />
       <window_info anchor="bottom" id="Java Enterprise" order="12" />
       <window_info anchor="bottom" id="Database Changes" order="13" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="14" show_stripe_button="false" />
@@ -701,7 +846,7 @@
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="right" id="Capture Analysis" order="4" />
-      <window_info anchor="right" id="Maven Projects" order="5" weight="0.32995737" />
+      <window_info anchor="right" id="Maven Projects" order="5" visible="true" weight="0.23827292" />
       <window_info anchor="right" id="Database" order="6" />
       <window_info anchor="right" id="Palette&#9;" order="7" />
       <window_info anchor="right" id="Theme Preview" order="8" />
@@ -719,13 +864,6 @@
     <entry file="file://$PROJECT_DIR$/src/main/resources/springmvc.xml">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/index.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="9" selection-start-line="9" selection-end-line="9" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/test/com/wxgzh/test.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="200">
@@ -737,16 +875,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-42">
           <caret line="60" column="33" selection-start-line="60" selection-start-column="33" selection-end-line="60" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/com/wxgzh/test/UUIDTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="350">
-          <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -764,30 +892,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/com/wxgzh/test/HttpClientTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="476">
-          <caret line="46" column="46" selection-start-line="37" selection-start-column="8" selection-end-line="46" selection-end-column="46" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/wxgzh/service/AutoRobotService.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="325">
           <caret line="13" column="10" selection-start-line="13" selection-start-column="10" selection-end-line="13" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/wxgzh/utils/SignUtil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="451">
-          <caret line="20" column="23" selection-start-line="20" selection-start-column="23" selection-end-line="20" selection-end-column="23" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -832,33 +940,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/wxgzh/utils/XmlUtil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="161">
-          <caret line="76" column="91" selection-start-line="76" selection-start-column="91" selection-end-line="76" selection-end-column="91" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/wxgzh/utils/HttpUtils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="326">
-          <caret line="125" column="76" selection-start-line="125" selection-start-column="76" selection-end-line="125" selection-end-column="76" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/wxgzh/enums/ConfigInfo.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="100">
-          <caret line="13" column="35" selection-start-line="13" selection-start-column="35" selection-end-line="13" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="250">
@@ -869,27 +950,329 @@
     <entry file="file://$PROJECT_DIR$/axis.log">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/wxgzh/service/TextMessageService.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/wxgzh/utils/HttpUtil.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="412">
-          <caret line="18" column="23" selection-start-line="18" selection-start-column="4" selection-end-line="18" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/wxgzh/service/impl/TextMessageServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="462">
-          <caret line="28" lean-forward="true" selection-start-line="28" selection-end-line="28" />
+        <state relative-caret-position="326">
+          <caret line="125" column="76" selection-start-line="125" selection-start-column="76" selection-end-line="125" selection-end-column="76" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/wxgzh/domain/ResponseTextMessage.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/wxgzh/utils/XmlUtil.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="462">
-          <caret line="33" lean-forward="true" selection-start-line="33" selection-end-line="33" />
+        <state relative-caret-position="161">
+          <caret line="76" column="91" selection-start-line="76" selection-start-column="91" selection-end-line="76" selection-end-column="91" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/wxgzh/utils/SignUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="30" column="35" lean-forward="true" selection-start-line="30" selection-start-column="35" selection-end-line="30" selection-end-column="35" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/wxgzh/utils/UuidUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="200">
+          <caret line="10" column="23" selection-start-line="10" selection-start-column="23" selection-end-line="10" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/wxgzh/domain/AutoReply.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="325">
+          <caret line="34" column="11" selection-start-line="34" selection-start-column="11" selection-end-line="34" selection-end-column="11" />
+          <folding>
+            <element signature="e#480#481#0" expanded="true" />
+            <element signature="e#511#512#0" expanded="true" />
+            <element signature="e#559#560#0" expanded="true" />
+            <element signature="e#599#600#0" expanded="true" />
+            <element signature="e#633#634#0" expanded="true" />
+            <element signature="e#663#664#0" expanded="true" />
+            <element signature="e#709#710#0" expanded="true" />
+            <element signature="e#747#748#0" expanded="true" />
+            <element signature="e#784#785#0" expanded="true" />
+            <element signature="e#819#820#0" expanded="true" />
+            <element signature="e#872#873#0" expanded="true" />
+            <element signature="e#913#914#0" expanded="true" />
+            <element signature="e#949#950#0" expanded="true" />
+            <element signature="e#981#982#0" expanded="true" />
+            <element signature="e#1031#1032#0" expanded="true" />
+            <element signature="e#1073#1074#0" expanded="true" />
+            <element signature="e#1125#1126#0" expanded="true" />
+            <element signature="e#1160#1161#0" expanded="true" />
+            <element signature="e#1229#1230#0" expanded="true" />
+            <element signature="e#1277#1278#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/jdbcConfig.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="3" column="16" selection-start-line="3" selection-start-column="16" selection-end-line="3" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/applicationContext.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="675">
+          <caret line="27" column="53" selection-start-line="27" selection-start-column="53" selection-end-line="27" selection-end-column="53" />
+          <folding>
+            <element signature="e#1364#1380#0" expanded="true" />
+            <element signature="e#1422#1434#0" expanded="true" />
+            <element signature="e#1473#1482#0" expanded="true" />
+            <element signature="e#1525#1538#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/wxgzh/test/ImageDaoTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="469">
+          <caret line="27" lean-forward="true" selection-start-line="27" selection-end-line="27" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/wxgzh/service/ImageService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="17" lean-forward="true" selection-start-line="17" selection-end-line="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/com/wxgzh/test/UUIDTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="400">
+          <caret line="21" column="1" selection-start-line="21" selection-start-column="1" selection-end-line="21" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/com/wxgzh/test/HttpClientTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1000">
+          <caret line="40" column="46" lean-forward="true" selection-start-line="40" selection-start-column="46" selection-end-line="40" selection-end-column="46" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/wxgzh/domain/RequestImage.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="194">
+          <caret line="19" column="26" selection-start-line="19" selection-start-column="19" selection-end-line="19" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/wxgzh/domain/BaseRequestMessage.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="775">
+          <caret line="31" selection-start-line="31" selection-end-line="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/wxgzh/domain/RequestVoice.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="369">
+          <caret line="16" column="7" selection-start-line="16" selection-start-column="7" selection-end-line="16" selection-end-column="7" />
+          <folding>
+            <element signature="e#410#411#0" expanded="true" />
+            <element signature="e#440#441#0" expanded="true" />
+            <element signature="e#486#487#0" expanded="true" />
+            <element signature="e#524#525#0" expanded="true" />
+            <element signature="e#630#631#0" expanded="true" />
+            <element signature="e#666#667#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/wxgzh/dao/ImageDao.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="369">
+          <caret line="15" column="11" selection-start-line="15" selection-start-column="11" selection-end-line="15" selection-end-column="11" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/wxgzh/dao/TextDao.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="13" column="26" lean-forward="true" selection-start-line="13" selection-start-column="26" selection-end-line="13" selection-end-column="26" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/wxgzh/service/VoiceService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="250">
+          <caret line="10" column="17" selection-start-line="10" selection-start-column="17" selection-end-line="10" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/wxgzh/dao/VoiceDao.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="294">
+          <caret line="12" column="11" selection-start-line="12" selection-start-column="1" selection-end-line="12" selection-end-column="11" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/wxgzh/service/impl/ImageServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="325">
+          <caret line="16" selection-start-line="16" selection-end-line="16" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/wxgzh/service/impl/VoiceServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="444">
+          <caret line="25" selection-start-line="25" selection-end-line="25" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#516#517#0" expanded="true" />
+            <element signature="e#552#553#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/com/wxgzh/test/ImageServiceTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="200">
+          <caret line="20" column="2" selection-start-line="20" selection-start-column="2" selection-end-line="38" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/com/wxgzh/test/VoiceServiceTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="94">
+          <caret line="23" column="13" selection-start-line="23" selection-start-column="13" selection-end-line="23" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/com/wxgzh/test/TextServiceTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="17" column="59" selection-start-line="17" selection-start-column="59" selection-end-line="17" selection-end-column="59" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/index.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="9" selection-start-line="9" selection-end-line="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/wxgzh/domain/RequestText.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="393">
+          <caret line="23" column="5" selection-start-line="23" selection-start-column="5" selection-end-line="23" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/wxgzh/domain/ResponseText.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-16">
+          <caret line="15" selection-start-line="15" selection-end-line="15" selection-end-column="29" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/wxgzh/domain/miniclass/Image.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="352">
+          <caret line="24" column="44" selection-start-line="24" selection-start-column="44" selection-end-line="24" selection-end-column="44" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#285#286#0" expanded="true" />
+            <element signature="e#315#316#0" expanded="true" />
+            <element signature="e#399#400#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/wxgzh/domain/ResponseImage.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="14" column="32" selection-start-line="14" selection-start-column="32" selection-end-line="14" selection-end-column="32" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#461#462#0" expanded="true" />
+            <element signature="e#489#490#0" expanded="true" />
+            <element signature="e#530#531#0" expanded="true" />
+            <element signature="e#564#565#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/wxgzh/service/TextService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="400">
+          <caret line="32" column="47" selection-start-line="32" selection-start-column="47" selection-end-line="32" selection-end-column="47" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/wxgzh/service/impl/TextServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="448">
+          <caret line="51" column="5" selection-start-line="51" selection-start-column="5" selection-end-line="51" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/wxgzh/domain/BaseResponseMessage.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="134">
+          <caret line="38" column="27" selection-start-line="38" selection-start-column="27" selection-end-line="38" selection-end-column="27" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/wxgzh/domain/ConfigInfo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="352">
+          <caret line="54" column="35" selection-start-line="54" selection-start-column="35" selection-end-line="54" selection-end-column="35" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -898,62 +1281,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/wxgzh/enums/Message.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="13" column="16" selection-start-line="13" selection-start-column="11" selection-end-line="13" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/wxgzh/domain/BaseResponseMessage.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-256">
-          <caret line="42" column="18" lean-forward="true" selection-start-line="42" selection-start-column="18" selection-end-line="42" selection-end-column="18" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1004#1005#0" expanded="true" />
-            <element signature="e#1039#1040#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/wxgzh/domain/BaseRequestMessage.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="419">
-          <caret line="77" column="1" lean-forward="true" selection-start-line="77" selection-start-column="1" selection-end-line="77" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/wxgzh/domain/RequestTextMessage.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="394">
-          <caret line="24" lean-forward="true" selection-start-line="24" selection-end-line="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/wxgzh/domain/RequestVoiceMessage.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="419">
-          <caret line="49" column="18" selection-start-line="49" selection-start-column="18" selection-end-line="49" selection-end-column="18" />
-          <folding>
-            <element signature="e#372#373#0" expanded="true" />
-            <element signature="e#402#403#0" expanded="true" />
-            <element signature="e#448#449#0" expanded="true" />
-            <element signature="e#486#487#0" expanded="true" />
-            <element signature="e#519#520#0" expanded="true" />
-            <element signature="e#548#549#0" expanded="true" />
-            <element signature="e#592#593#0" expanded="true" />
-            <element signature="e#628#629#0" expanded="true" />
-            <element signature="e#666#667#0" expanded="true" />
-            <element signature="e#700#701#0" expanded="true" />
-            <element signature="e#754#755#0" expanded="true" />
-            <element signature="e#800#801#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="43">
+          <caret line="12" column="20" selection-start-line="12" selection-start-column="20" selection-end-line="12" selection-end-column="20" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/wxgzh/controller/WeiXinApiController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="269">
-          <caret line="92" column="23" lean-forward="true" selection-start-line="92" selection-start-column="23" selection-end-line="92" selection-end-column="23" />
+        <state relative-caret-position="288">
+          <caret line="142" column="1" selection-start-line="142" selection-start-column="1" selection-end-line="142" selection-end-column="1" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

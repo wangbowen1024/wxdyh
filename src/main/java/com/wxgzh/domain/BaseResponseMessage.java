@@ -38,17 +38,6 @@ public class BaseResponseMessage implements Serializable {
     @XmlElement(name = "MsgType")
     private String msgType;
 
-    /**
-     * 设置基本属性
-     * @param base
-     */
-    public void setBase(BaseResponseMessage base) {
-        setToUserName(base.getToUserName());
-        setFromUserName(base.getFromUserName());
-        setCreateTime(base.getCreateTime());
-        setMsgType(base.getMsgType());
-    }
-
 
     public String getToUserName() {
         return toUserName;
@@ -80,5 +69,15 @@ public class BaseResponseMessage implements Serializable {
 
     public void setMsgType(String msgType) {
         this.msgType = msgType;
+    }
+
+    @Override
+    public String toString() {
+        return "BaseResponseMessage{" +
+                "toUserName='" + toUserName + '\'' +
+                ", fromUserName='" + fromUserName + '\'' +
+                ", createTime='" + createTime + '\'' +
+                ", msgType='" + msgType + '\'' +
+                '}';
     }
 }

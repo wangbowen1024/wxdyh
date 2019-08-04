@@ -1,12 +1,11 @@
 package com.wxgzh.controller;
 
-import com.wxgzh.domain.BaseResponseMessage;
-import com.wxgzh.domain.RequestTextMessage;
-import com.wxgzh.domain.RequestVoiceMessage;
-import com.wxgzh.domain.ResponseTextMessage;
-import com.wxgzh.enums.ConfigInfo;
+import com.wxgzh.domain.*;
+import com.wxgzh.domain.miniclass.Image;
 import com.wxgzh.enums.Message;
-import com.wxgzh.service.TextMessageService;
+import com.wxgzh.service.ImageService;
+import com.wxgzh.service.TextService;
+import com.wxgzh.service.VoiceService;
 import com.wxgzh.utils.SignUtil;
 import com.wxgzh.utils.XmlUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +29,11 @@ import java.util.Map;
 public class WeiXinApiController {
 
     @Autowired
-    private TextMessageService textMessageService;
+    private TextService textMessageService;
+    @Autowired
+    private ImageService imageMessageService;
+    @Autowired
+    private VoiceService voiceService;
 
     /**
      * 只有返回成功echostr，微信才会认可这个接口
@@ -64,62 +67,77 @@ public class WeiXinApiController {
     @RequestMapping(value = "/api", method = RequestMethod.POST, produces = {"application/xml;charset=UTF-8"})
     @ResponseBody
     public Object receiveMessage(@RequestBody String request) throws Exception {
-
         Map<String, Object> params = XmlUtil.xmlStrToMap(request);
+        String fromUserName = (String) params.get("FromUserName");
         Object result = null;
-        Message setMsgType = null;
         // 获取消息类型
         String msgType = (String) params.get("MsgType");
-        if (Message.TEXT.getMsgType().equalsIgnoreCase(msgType)) {
+        if (Message.TEXT.getMsgType().equals(msgType) || Message.VOICE.getMsgType().equals(msgType)) {
             /**
-             * 如果是文本消息
+             * 如果是文本或语音（语音会转为文本）消息
              */
-            RequestTextMessage message = (RequestTextMessage) XmlUtil.mapToBean(params, RequestTextMessage.class);
-            // 获取请求内容
-            String content = message.getContent();
-            // 解析内容匹配业务条件
-            if (content.length() > 0) {
-                // 获取返回消息对象
-                result = textMessageService.getRobotReply(content);
-                // 设置希望返回的消息类型
-                setMsgType = Message.TEXT;
+            // 请求内容
+            String content;
+            if (Message.TEXT.getMsgType().equals(msgType)) {
+                RequestText message = (RequestText) XmlUtil.mapToBean(params, RequestText.class);
+                textMessageService.saveText(message);
+                content = message.getContent();
+            } else {
+                RequestVoice message = (RequestVoice) XmlUtil.mapToBean(params, RequestVoice.class);
+                voiceService.saveVoice(message);
+                content = message.getRecognition();
             }
-        } else if (Message.VOICE.getMsgType().equalsIgnoreCase(msgType)) {
+            // **************自定义匹配规则以及对应的业务,注意匹配顺序****************
+            if (content.length() > 0) {
+                // 机器人回复
+                result = responseParse(textMessageService.getRobotReply(content), Message.TEXT, fromUserName);
+            }
+            // ******************************END**************************************
+        } else if (Message.IMAGE.getMsgType().equals(msgType)) {
             /**
-             * 如果是语音消息
+             * 如果是图片消息
              */
-            RequestVoiceMessage message = (RequestVoiceMessage) XmlUtil.mapToBean(params, RequestVoiceMessage.class);
-            String recognition = message.getRecognition();
-            // 获取返回消息对象
-            result = textMessageService.getRobotReply(recognition);
-            setMsgType = Message.TEXT;
+            RequestImage message = (RequestImage) XmlUtil.mapToBean(params, RequestImage.class);
+            imageMessageService.saveImage(message);
+            result = checkAdminMessage(params, fromUserName);
         }
         // 返回消息
-        return result == null ? null : responseParse(result, setMsgType, (String) params.get("FromUserName"));
+        return result;
     }
 
     /**
      * 处理返回结果
-     * @param obj
-     * @param msgType
+     * @param obj Response响应消息类
+     * @param msgType 响应类型
+     * @param toUserName 接收者ID
      * @return
      */
-    private Object responseParse(Object obj, Message msgType, String toUserName) {
-        // 配置基本回复属性
-        BaseResponseMessage base = new BaseResponseMessage();
-        base.setToUserName(toUserName);
-        base.setFromUserName(ConfigInfo.WXGZH_ID.getValue());
-        base.setCreateTime(String.valueOf(System.currentTimeMillis()));
-        base.setMsgType(msgType.getMsgType());
-
-        // 如果返回文本
-        if (Message.TEXT.equals(msgType)) {
-            ResponseTextMessage response = (ResponseTextMessage) obj;
-            response.setBase(base);
-            return response;
+    private Object responseParse(BaseResponseMessage obj, Message msgType, String toUserName) {
+        if (obj != null) {
+            // 配置基本回复属性
+            obj.setToUserName(toUserName);
+            obj.setFromUserName(ConfigInfo.wxgzhId);
+            obj.setCreateTime(String.valueOf(System.currentTimeMillis()));
+            obj.setMsgType(msgType.getMsgType());
         }
-
-        return null;
+        return obj;
     }
 
+    /**
+     * 检查是否是管理员消息。是：若有MediaId返回
+     * @param map
+     * @param fromUserName
+     * @return
+     */
+    private Object checkAdminMessage(Map<String, Object> map, String fromUserName ) {
+        // 如果发送者是管理员
+        if (ConfigInfo.adminSet.contains(fromUserName)) {
+            // 如果包含MediaId值
+            if (map.containsKey("MediaId")) {
+                return responseParse(textMessageService.returnMediaId("MediaId: " + map.get("MediaId")),
+                        Message.TEXT, fromUserName);
+            }
+        }
+        return "success";
+    }
 }

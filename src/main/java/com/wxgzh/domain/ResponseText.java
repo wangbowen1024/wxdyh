@@ -14,7 +14,7 @@ import java.io.Serializable;
  * @date 2019/08/03
  */
 @XmlRootElement(name = "xml")
-public class ResponseTextMessage extends BaseResponseMessage implements Serializable {
+public class ResponseText extends BaseResponseMessage {
 
     /**
      * 回复的消息内容（换行：在content中能够换行，微信客户端就支持换行显示）

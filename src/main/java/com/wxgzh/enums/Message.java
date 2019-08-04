@@ -11,7 +11,8 @@ public enum Message {
      * 文本消息类型
      */
     TEXT("text", 0),
-    VOICE("voice", 1);
+    VOICE("voice", 1),
+    IMAGE("image", 2);
 
     private String msgType;
     private Integer id;

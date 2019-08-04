@@ -21,11 +21,13 @@
 
     <!--Spring整合MyBatis框架-->
     <!-- 10、配置连接池 -->
+    <!-- 使用properties分离数据库连接数据 -->
+    <context:property-placeholder location="classpath:jdbcConfig.properties"/>
     <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
-        <property name="driverClass" value="com.mysql.jdbc.Driver"/>
-        <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/ssm"/>
-        <property name="user" value="root"/>
-        <property name="password" value="Bow1024"/>
+        <property name="driverClass" value="${driverClass}"/>
+        <property name="jdbcUrl" value="${jdbcUrl}"/>
+        <property name="user" value="${user}"/>
+        <property name="password" value="${password}"/>
     </bean>
 
     <!-- 11、配置SqlSessionFactory工厂 -->

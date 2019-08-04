@@ -6,11 +6,11 @@ package com.wxgzh.domain;
  * @author BowenWang
  * @date 2019/08/04
  */
-public class RequestVoiceMessage extends BaseRequestMessage {
+public class RequestVoice extends BaseRequestMessage {
     /**
      * 语音消息媒体id，可以调用获取临时素材接口拉取该媒体
      */
-    private String mediaID;
+    private String mediaId;
 
     /**
      * 语音格式：amr
@@ -22,12 +22,12 @@ public class RequestVoiceMessage extends BaseRequestMessage {
      */
     private String recognition;
 
-    public String getMediaID() {
-        return mediaID;
+    public String getMediaId() {
+        return mediaId;
     }
 
-    public void setMediaID(String mediaID) {
-        this.mediaID = mediaID;
+    public void setMediaId(String mediaId) {
+        this.mediaId = mediaId;
     }
 
     public String getFormat() {
@@ -46,12 +46,4 @@ public class RequestVoiceMessage extends BaseRequestMessage {
         this.recognition = recognition;
     }
 
-    @Override
-    public String toString() {
-        return "RequestVoiceMessage{" +
-                "mediaID='" + mediaID + '\'' +
-                ", format='" + format + '\'' +
-                ", recognition='" + recognition + '\'' +
-                '}';
-    }
 }
