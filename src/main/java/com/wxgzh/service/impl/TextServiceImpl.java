@@ -45,7 +45,7 @@ public class TextServiceImpl implements TextService {
     }
 
     @Override
-    public ResponseText returnMediaId(String content) {
+    public ResponseText returnText(String content) {
         ResponseText responseText = new ResponseText();
         responseText.setContent(content);
         return responseText;

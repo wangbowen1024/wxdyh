@@ -1,7 +1,6 @@
 package com.wxgzh.controller;
 
 import com.wxgzh.domain.*;
-import com.wxgzh.domain.miniclass.Image;
 import com.wxgzh.enums.Message;
 import com.wxgzh.service.ImageService;
 import com.wxgzh.service.TextService;
@@ -69,7 +68,6 @@ public class WeiXinApiController {
     public Object receiveMessage(@RequestBody String request) throws Exception {
         Map<String, Object> params = XmlUtil.xmlStrToMap(request);
         String fromUserName = (String) params.get("FromUserName");
-        Object result = null;
         // 获取消息类型
         String msgType = (String) params.get("MsgType");
         if (Message.TEXT.getMsgType().equals(msgType) || Message.VOICE.getMsgType().equals(msgType)) {
@@ -88,9 +86,14 @@ public class WeiXinApiController {
                 content = message.getRecognition();
             }
             // **************自定义匹配规则以及对应的业务,注意匹配顺序****************
+            if (content.contains("获取图片")) {
+                // 测试返回图片
+                return responseParse(imageMessageService.returnImage("jVBUH8jU8G738piFuRr2U8s3Z5eI5uokfsFJgB20Wa-y2FMbIsTcH0ijavMD0Wfn"),
+                        fromUserName);
+            }
             if (content.length() > 0) {
                 // 机器人回复
-                result = responseParse(textMessageService.getRobotReply(content), Message.TEXT, fromUserName);
+                return responseParse(textMessageService.getRobotReply(content), fromUserName);
             }
             // ******************************END**************************************
         } else if (Message.IMAGE.getMsgType().equals(msgType)) {
@@ -99,26 +102,23 @@ public class WeiXinApiController {
              */
             RequestImage message = (RequestImage) XmlUtil.mapToBean(params, RequestImage.class);
             imageMessageService.saveImage(message);
-            result = checkAdminMessage(params, fromUserName);
+            return checkAdminMessage(params, fromUserName);
         }
-        // 返回消息
-        return result;
+        return "success";
     }
 
     /**
      * 处理返回结果
      * @param obj Response响应消息类
-     * @param msgType 响应类型
      * @param toUserName 接收者ID
      * @return
      */
-    private Object responseParse(BaseResponseMessage obj, Message msgType, String toUserName) {
+    private Object responseParse(BaseResponseMessage obj, String toUserName) {
         if (obj != null) {
             // 配置基本回复属性
             obj.setToUserName(toUserName);
             obj.setFromUserName(ConfigInfo.wxgzhId);
             obj.setCreateTime(String.valueOf(System.currentTimeMillis()));
-            obj.setMsgType(msgType.getMsgType());
         }
         return obj;
     }
@@ -134,8 +134,8 @@ public class WeiXinApiController {
         if (ConfigInfo.adminSet.contains(fromUserName)) {
             // 如果包含MediaId值
             if (map.containsKey("MediaId")) {
-                return responseParse(textMessageService.returnMediaId("MediaId: " + map.get("MediaId")),
-                        Message.TEXT, fromUserName);
+                return responseParse(textMessageService.returnText("MediaId: " + map.get("MediaId")),
+                        fromUserName);
             }
         }
         return "success";

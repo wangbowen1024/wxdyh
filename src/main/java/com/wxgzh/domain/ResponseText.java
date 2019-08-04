@@ -22,6 +22,10 @@ public class ResponseText extends BaseResponseMessage {
     @XmlElement(name = "Content")
     private String content;
 
+    public ResponseText() {
+        setMsgType("text");
+    }
+
     public String getContent() {
         return content;
     }

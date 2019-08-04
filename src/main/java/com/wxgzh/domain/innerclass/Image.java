@@ -1,9 +1,8 @@
-package com.wxgzh.domain.miniclass;
+package com.wxgzh.domain.innerclass;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
 
 /**
@@ -18,6 +17,10 @@ public class Image implements Serializable {
     @XmlElement(name = "MediaId")
     private String mediaId;
 
+    public Image(String mediaId) {
+        this.mediaId = mediaId;
+    }
+
     public String getMediaId() {
         return mediaId;
     }
@@ -26,10 +29,4 @@ public class Image implements Serializable {
         this.mediaId = mediaId;
     }
 
-    @Override
-    public String toString() {
-        return "Image{" +
-                "mediaId='" + mediaId + '\'' +
-                '}';
-    }
 }

@@ -30,5 +30,5 @@ public interface TextService {
      * @param content
      * @return
      */
-    ResponseText returnMediaId(String content);
+    ResponseText returnText(String content);
 }

@@ -1,6 +1,6 @@
 package com.wxgzh.domain;
 
-import com.wxgzh.domain.miniclass.Image;
+import com.wxgzh.domain.innerclass.Image;
 
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -19,6 +19,10 @@ public class ResponseImage extends BaseResponseMessage {
     @XmlElement(name = "Image")
     private Image image;
 
+    public ResponseImage() {
+        setMsgType("image");
+    }
+
     public Image getImage() {
         return image;
     }
@@ -27,12 +31,6 @@ public class ResponseImage extends BaseResponseMessage {
         this.image = image;
     }
 
-    @Override
-    public String toString() {
-        return "ResponseImage{" +
-                "image=" + image +
-                '}' + super.toString();
-    }
 }
 
 
