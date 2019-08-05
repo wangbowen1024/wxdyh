@@ -1,4 +1,4 @@
-package com.wxgzh.domain;
+package com.wxgzh.domain.response;
 
 import com.wxgzh.domain.innerclass.Image;
 

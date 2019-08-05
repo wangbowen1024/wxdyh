@@ -1,7 +1,7 @@
 package com.wxgzh.service;
 
-import com.wxgzh.domain.RequestText;
-import com.wxgzh.domain.ResponseText;
+import com.wxgzh.domain.request.RequestText;
+import com.wxgzh.domain.response.ResponseText;
 
 /**
  * TextMessageService class
@@ -14,6 +14,7 @@ public interface TextService {
 
     /**
      * 获取机器人回复
+     *
      * @param question
      * @return
      */
@@ -21,12 +22,14 @@ public interface TextService {
 
     /**
      * 保存文本消息
+     *
      * @param requestTextMessage
      */
     void saveText(RequestText requestTextMessage);
 
     /**
      * 返回文本消息
+     *
      * @param content
      * @return
      */

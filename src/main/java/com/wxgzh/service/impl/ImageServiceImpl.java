@@ -1,8 +1,8 @@
 package com.wxgzh.service.impl;
 
 import com.wxgzh.dao.ImageDao;
-import com.wxgzh.domain.RequestImage;
-import com.wxgzh.domain.ResponseImage;
+import com.wxgzh.domain.request.RequestImage;
+import com.wxgzh.domain.response.ResponseImage;
 import com.wxgzh.domain.innerclass.Image;
 import com.wxgzh.service.ImageService;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,4 +1,4 @@
-package com.wxgzh.domain;
+package com.wxgzh.domain.response;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;

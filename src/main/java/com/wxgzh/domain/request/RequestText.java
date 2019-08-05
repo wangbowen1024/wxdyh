@@ -1,14 +1,14 @@
-package com.wxgzh.domain;
+package com.wxgzh.domain.request;
 
 /**
- * RequestTextMessage class
+ * RequestText class
  * 请求文本消息
  *
  * @author BowenWang
  * @date 2019/08/03
  */
 
-public class RequestText extends BaseRequestMessage{
+public class RequestText extends BaseRequestMessage {
 
     /**
      * 文本消息内容

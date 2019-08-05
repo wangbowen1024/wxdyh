@@ -1,6 +1,6 @@
 package com.wxgzh.test;
 
-import com.wxgzh.domain.RequestText;
+import com.wxgzh.domain.request.RequestText;
 import com.wxgzh.service.TextService;
 import org.junit.Test;
 import org.junit.runner.RunWith;

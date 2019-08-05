@@ -1,6 +1,6 @@
 package com.wxgzh.dao;
 
-import com.wxgzh.domain.RequestVoice;
+import com.wxgzh.domain.request.RequestVoice;
 import org.apache.ibatis.annotations.Insert;
 import org.springframework.stereotype.Repository;
 

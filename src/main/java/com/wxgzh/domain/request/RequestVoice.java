@@ -1,7 +1,7 @@
-package com.wxgzh.domain;
+package com.wxgzh.domain.request;
 
 /**
- * RequestVoiceMessage class
+ * RequestVoice class
  *
  * @author BowenWang
  * @date 2019/08/04

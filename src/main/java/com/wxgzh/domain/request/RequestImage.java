@@ -1,7 +1,7 @@
-package com.wxgzh.domain;
+package com.wxgzh.domain.request;
 
 /**
- * RequestImageMessage class
+ * RequestImage class
  * 接受图片消息
  *
  * @author BowenWang

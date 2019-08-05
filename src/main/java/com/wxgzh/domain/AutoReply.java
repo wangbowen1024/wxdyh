@@ -1,5 +1,7 @@
 package com.wxgzh.domain;
 
+import com.wxgzh.domain.response.BaseResponseMessage;
+
 import java.io.Serializable;
 
 /**

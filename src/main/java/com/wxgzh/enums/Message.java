@@ -12,7 +12,9 @@ public enum Message {
      */
     TEXT("text", 0),
     VOICE("voice", 1),
-    IMAGE("image", 2);
+    IMAGE("image", 2),
+    VIDEO("video", 3),
+    SHORT_VIDEO("shortvideo", 4);
 
     private String msgType;
     private Integer id;

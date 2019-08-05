@@ -1,6 +1,6 @@
 package com.wxgzh.test;
 
-import com.wxgzh.domain.RequestVoice;
+import com.wxgzh.domain.request.RequestVoice;
 import com.wxgzh.service.VoiceService;
 import org.junit.Test;
 import org.junit.runner.RunWith;

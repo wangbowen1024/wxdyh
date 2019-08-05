@@ -1,4 +1,4 @@
-package com.wxgzh.domain;
+package com.wxgzh.domain.request;
 
 import java.io.Serializable;
 

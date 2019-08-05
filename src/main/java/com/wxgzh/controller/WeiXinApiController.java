@@ -1,10 +1,17 @@
 package com.wxgzh.controller;
 
 import com.wxgzh.domain.*;
+import com.wxgzh.domain.request.RequestImage;
+import com.wxgzh.domain.request.RequestText;
+import com.wxgzh.domain.request.RequestVideo;
+import com.wxgzh.domain.request.RequestVoice;
+import com.wxgzh.domain.response.BaseResponseMessage;
 import com.wxgzh.enums.Message;
 import com.wxgzh.service.ImageService;
 import com.wxgzh.service.TextService;
+import com.wxgzh.service.VideoService;
 import com.wxgzh.service.VoiceService;
+import com.wxgzh.utils.AccessTokenUtil;
 import com.wxgzh.utils.SignUtil;
 import com.wxgzh.utils.XmlUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,11 +35,13 @@ import java.util.Map;
 public class WeiXinApiController {
 
     @Autowired
-    private TextService textMessageService;
+    private TextService textService;
     @Autowired
-    private ImageService imageMessageService;
+    private ImageService imageService;
     @Autowired
     private VoiceService voiceService;
+    @Autowired
+    private VideoService videoService;
 
     /**
      * 只有返回成功echostr，微信才会认可这个接口
@@ -67,41 +76,67 @@ public class WeiXinApiController {
     @ResponseBody
     public Object receiveMessage(@RequestBody String request) throws Exception {
         Map<String, Object> params = XmlUtil.xmlStrToMap(request);
+        // 获取发送者ID
         String fromUserName = (String) params.get("FromUserName");
         // 获取消息类型
         String msgType = (String) params.get("MsgType");
         if (Message.TEXT.getMsgType().equals(msgType) || Message.VOICE.getMsgType().equals(msgType)) {
-            /**
-             * 如果是文本或语音（语音会转为文本）消息
-             */
-            // 请求内容
+            // 用于储存文本或语音转换文本结果
             String content;
             if (Message.TEXT.getMsgType().equals(msgType)) {
+                // 接收文本消息
                 RequestText message = (RequestText) XmlUtil.mapToBean(params, RequestText.class);
-                textMessageService.saveText(message);
+                textService.saveText(message);
                 content = message.getContent();
             } else {
+                // 接收语音消息
                 RequestVoice message = (RequestVoice) XmlUtil.mapToBean(params, RequestVoice.class);
                 voiceService.saveVoice(message);
                 content = message.getRecognition();
+                return checkAdminMessage(params, fromUserName);
             }
-            // **************自定义匹配规则以及对应的业务,注意匹配顺序****************
+            // ******************************自定义匹配规则以及对应的业务,注意匹配顺序**********************************
+            /*
+             * 获取TOKEN
+             */
+            if (content.contains("获取令牌")) {
+                return responseParse(textService.returnText(AccessTokenUtil.getAccessToken()), fromUserName);
+            }
+            /*
+            * 测试返回图片
+            */
             if (content.contains("获取图片")) {
-                // 测试返回图片
-                return responseParse(imageMessageService.returnImage("jVBUH8jU8G738piFuRr2U8s3Z5eI5uokfsFJgB20Wa-y2FMbIsTcH0ijavMD0Wfn"),
+                return responseParse(imageService.returnImage("nfB-1AErW9_nQNYAk2DBWyQkB6-04SQgf_T39pGyVfEf5ne0z4xpd60Zb7ssbJPn"),
+                        fromUserName);
+            }
+            /*
+             * 测试返回语音
+             */
+            if (content.contains("获取语音")) {
+                return responseParse(voiceService.returnVoice("O3v7AI7NmGyFdggob9aiUm3_B0G9dGv9A4-YYJxRu_r0c-_cDH5gLaJL72VdnyBW"),
+                        fromUserName);
+            }
+            /*
+             * 测试返回视频
+             */
+            if (content.contains("获取视频")) {
+                return responseParse(videoService.returnVideo("VQSIN2EmE5LVqbwYF7ri6OtANN8G64cUTeAGZ5NhYjD-1_whXHsrtyEvUq6ztrlG", "测试视频", "用于测试返回视频"),
                         fromUserName);
             }
             if (content.length() > 0) {
                 // 机器人回复
-                return responseParse(textMessageService.getRobotReply(content), fromUserName);
+                return responseParse(textService.getRobotReply(content), fromUserName);
             }
-            // ******************************END**************************************
+            // ----------------------------------      E      N      D      ----------------------------------------
         } else if (Message.IMAGE.getMsgType().equals(msgType)) {
-            /**
-             * 如果是图片消息
-             */
+            // 接收是图片消息
             RequestImage message = (RequestImage) XmlUtil.mapToBean(params, RequestImage.class);
-            imageMessageService.saveImage(message);
+            imageService.saveImage(message);
+            return checkAdminMessage(params, fromUserName);
+        } else if (Message.VIDEO.getMsgType().equals(msgType) || Message.SHORT_VIDEO.getMsgType().equals(msgType)) {
+            // 接收视频（短视频）消息
+            RequestVideo message = (RequestVideo) XmlUtil.mapToBean(params, RequestVideo.class);
+            videoService.saveVideo(message);
             return checkAdminMessage(params, fromUserName);
         }
         return "success";
@@ -134,7 +169,7 @@ public class WeiXinApiController {
         if (ConfigInfo.adminSet.contains(fromUserName)) {
             // 如果包含MediaId值
             if (map.containsKey("MediaId")) {
-                return responseParse(textMessageService.returnText("MediaId: " + map.get("MediaId")),
+                return responseParse(textService.returnText("MediaId: " + map.get("MediaId")),
                         fromUserName);
             }
         }

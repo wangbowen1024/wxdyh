@@ -1,6 +1,6 @@
 package com.wxgzh.test;
 
-import com.wxgzh.domain.RequestImage;
+import com.wxgzh.domain.request.RequestImage;
 import com.wxgzh.service.ImageService;
 import org.junit.Test;
 import org.junit.runner.RunWith;

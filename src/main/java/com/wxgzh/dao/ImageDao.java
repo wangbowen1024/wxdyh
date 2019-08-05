@@ -1,6 +1,6 @@
 package com.wxgzh.dao;
 
-import com.wxgzh.domain.RequestImage;
+import com.wxgzh.domain.request.RequestImage;
 import org.apache.ibatis.annotations.Insert;
 import org.springframework.stereotype.Repository;
 

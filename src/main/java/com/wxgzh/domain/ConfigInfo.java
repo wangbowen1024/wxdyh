@@ -39,7 +39,7 @@ public class ConfigInfo {
     /**
      * AppSecret
      */
-    public static String appSecret = "93c6790b133f050bd3a26c81664bf7d8";
+    public static String appSecret = "51a35f26295ae8e91086906c308b7469";
 
     /**
      * 管理员列表
