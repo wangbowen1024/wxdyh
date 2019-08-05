@@ -8,7 +8,7 @@ package com.wxgzh.domain.request;
  * @date 2019/08/03
  */
 
-public class RequestText extends BaseRequestMessage {
+public class TextRequest extends BaseRequestMessage {
 
     /**
      * 文本消息内容

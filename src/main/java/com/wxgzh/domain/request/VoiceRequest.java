@@ -6,7 +6,7 @@ package com.wxgzh.domain.request;
  * @author BowenWang
  * @date 2019/08/04
  */
-public class RequestVoice extends BaseRequestMessage {
+public class VoiceRequest extends BaseRequestMessage {
     /**
      * 语音消息媒体id，可以调用获取临时素材接口拉取该媒体
      */

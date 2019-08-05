@@ -1,6 +1,6 @@
 package com.wxgzh.dao;
 
-import com.wxgzh.domain.request.RequestImage;
+import com.wxgzh.domain.request.ImageRequest;
 import org.apache.ibatis.annotations.Insert;
 import org.springframework.stereotype.Repository;
 
@@ -17,5 +17,5 @@ public interface ImageDao {
      * @param imageMessage
      */
     @Insert("insert into imageRecord(toUserName,fromUserName,createTime,msgType,msgId,picUrl,mediaId) values(#{toUserName},#{fromUserName},#{createTime},#{msgType},#{msgId},#{picUrl},#{mediaId})")
-    void saveImage(RequestImage imageMessage);
+    void saveImage(ImageRequest imageMessage);
 }

@@ -1,7 +1,7 @@
 package com.wxgzh.service;
 
-import com.wxgzh.domain.request.RequestVideo;
-import com.wxgzh.domain.response.ResponseVideo;
+import com.wxgzh.domain.request.VideoRequest;
+import com.wxgzh.domain.response.VideoResponse;
 import com.wxgzh.domain.innerclass.Video;
 
 /**
@@ -16,7 +16,7 @@ public interface VideoService {
      *
      * @param requestVideo
      */
-    void saveVideo(RequestVideo requestVideo);
+    void saveVideo(VideoRequest requestVideo);
 
     /**
      * 返回语音消息
@@ -26,7 +26,7 @@ public interface VideoService {
      * @param description
      * @return
      */
-    ResponseVideo returnVideo(String mediaId, String title, String description);
+    VideoResponse returnVideo(String mediaId, String title, String description);
 
     /**
      * 返回语音消息
@@ -34,5 +34,5 @@ public interface VideoService {
      * @param video
      * @return
      */
-    ResponseVideo returnVideo(Video video);
+    VideoResponse returnVideo(Video video);
 }

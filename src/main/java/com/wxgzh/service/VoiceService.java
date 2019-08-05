@@ -1,7 +1,7 @@
 package com.wxgzh.service;
 
-import com.wxgzh.domain.request.RequestVoice;
-import com.wxgzh.domain.response.ResponseVoice;
+import com.wxgzh.domain.request.VoiceRequest;
+import com.wxgzh.domain.response.VoiceResponse;
 
 /**
  * VoiceService class
@@ -15,12 +15,12 @@ public interface VoiceService {
      *
      * @param requestVoice
      */
-    void saveVoice(RequestVoice requestVoice);
+    void saveVoice(VoiceRequest requestVoice);
 
     /**
      * 返回语音消息
      *
      * @param mediaId
      */
-    ResponseVoice returnVoice(String mediaId);
+    VoiceResponse returnVoice(String mediaId);
 }

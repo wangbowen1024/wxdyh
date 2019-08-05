@@ -1,6 +1,6 @@
 package com.wxgzh.test;
 
-import com.wxgzh.domain.request.RequestVoice;
+import com.wxgzh.domain.request.VoiceRequest;
 import com.wxgzh.service.VoiceService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -25,7 +25,7 @@ public class VoiceServiceTest {
      */
     @Test
     public void testSaveVoice() {
-        RequestVoice requestVoice = new RequestVoice();
+        VoiceRequest requestVoice = new VoiceRequest();
         requestVoice.setMediaId("1");
         requestVoice.setFormat("2");
         requestVoice.setCreateTime("3");

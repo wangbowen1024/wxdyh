@@ -1,6 +1,6 @@
 package com.wxgzh.test;
 
-import com.wxgzh.domain.request.RequestImage;
+import com.wxgzh.domain.request.ImageRequest;
 import com.wxgzh.service.ImageService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -26,7 +26,7 @@ public class ImageServiceTest {
      */
     @Test
     public void testSaveImage() {
-        RequestImage requestImageMessage = new RequestImage();
+        ImageRequest requestImageMessage = new ImageRequest();
         requestImageMessage.setMediaId("1");
         requestImageMessage.setPicUrl("2");
         requestImageMessage.setCreateTime("3");

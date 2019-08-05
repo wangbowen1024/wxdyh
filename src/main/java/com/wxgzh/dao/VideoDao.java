@@ -1,6 +1,6 @@
 package com.wxgzh.dao;
 
-import com.wxgzh.domain.request.RequestVideo;
+import com.wxgzh.domain.request.VideoRequest;
 import org.apache.ibatis.annotations.Insert;
 import org.springframework.stereotype.Repository;
 
@@ -18,5 +18,5 @@ public interface VideoDao {
      * @param videoMessage
      */
     @Insert("insert into videoRecord(toUserName,fromUserName,createTime,msgType,msgId,mediaId,thumbMediaId) values(#{toUserName},#{fromUserName},#{createTime},#{msgType},#{msgId},#{mediaId},#{thumbMediaId})")
-    void saveVideo(RequestVideo videoMessage);
+    void saveVideo(VideoRequest videoMessage);
 }

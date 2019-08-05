@@ -1,4 +1,4 @@
-package com.wxgzh.domain;
+package com.wxgzh.domain.common;
 
 import java.util.HashSet;
 import java.util.Set;

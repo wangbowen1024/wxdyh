@@ -1,8 +1,7 @@
 package com.wxgzh.utils;
 
-import com.wxgzh.domain.ConfigInfo;
+import com.wxgzh.domain.common.ConfigInfo;
 
-import javax.security.auth.login.Configuration;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 

@@ -13,14 +13,14 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @date 2019/08/03
  */
 @XmlRootElement(name = "xml")
-public class ResponseVoice extends BaseResponseMessage {
+public class VoiceResponse extends BaseResponseMessage {
     /**
      * 通过素材管理中的接口上传多媒体文件，得到的id
      */
     @XmlElement(name = "Voice")
     private Voice voice;
 
-    public ResponseVoice() {
+    public VoiceResponse() {
         setMsgType("voice");
     }
 

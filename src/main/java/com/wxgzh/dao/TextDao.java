@@ -1,6 +1,6 @@
 package com.wxgzh.dao;
 
-import com.wxgzh.domain.request.RequestText;
+import com.wxgzh.domain.request.TextRequest;
 import org.apache.ibatis.annotations.Insert;
 import org.springframework.stereotype.Repository;
 
@@ -18,6 +18,6 @@ public interface TextDao {
      * @param requestTextMessage
      */
     @Insert("insert into textRecord(toUserName,fromUserName,createTime,msgType,msgId,content) values(#{toUserName},#{fromUserName},#{createTime},#{msgType},#{msgId},#{content})")
-    void saveText(RequestText requestTextMessage);
+    void saveText(TextRequest requestTextMessage);
 
 }

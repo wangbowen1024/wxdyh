@@ -12,7 +12,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @date 2019/08/04
  */
 @XmlRootElement(name = "xml")
-public class ResponseVideo extends BaseResponseMessage {
+public class VideoResponse extends BaseResponseMessage {
 
     /**
      * 视频内容
@@ -20,7 +20,7 @@ public class ResponseVideo extends BaseResponseMessage {
     @XmlElement(name = "Video")
     private Video video;
 
-    public ResponseVideo() {
+    public VideoResponse() {
         setMsgType("video");
     }
 

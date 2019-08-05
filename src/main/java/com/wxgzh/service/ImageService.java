@@ -1,7 +1,7 @@
 package com.wxgzh.service;
 
-import com.wxgzh.domain.request.RequestImage;
-import com.wxgzh.domain.response.ResponseImage;
+import com.wxgzh.domain.request.ImageRequest;
+import com.wxgzh.domain.response.ImageResponse;
 
 /**
  * ImageMessageService class
@@ -15,12 +15,12 @@ public interface ImageService {
      *
      * @param requestImageMessage
      */
-    void saveImage(RequestImage requestImageMessage);
+    void saveImage(ImageRequest requestImageMessage);
 
     /**
      * 返回图片消息
      *
      * @return
      */
-    ResponseImage returnImage(String mediaId);
+    ImageResponse returnImage(String mediaId);
 }

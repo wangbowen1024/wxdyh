@@ -1,8 +1,8 @@
 package com.wxgzh.service.impl;
 
 import com.wxgzh.dao.ImageDao;
-import com.wxgzh.domain.request.RequestImage;
-import com.wxgzh.domain.response.ResponseImage;
+import com.wxgzh.domain.request.ImageRequest;
+import com.wxgzh.domain.response.ImageResponse;
 import com.wxgzh.domain.innerclass.Image;
 import com.wxgzh.service.ImageService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,13 +21,13 @@ public class ImageServiceImpl implements ImageService {
     private ImageDao imageDao;
 
     @Override
-    public void saveImage(RequestImage requestImageMessage) {
+    public void saveImage(ImageRequest requestImageMessage) {
         imageDao.saveImage(requestImageMessage);
     }
 
     @Override
-    public ResponseImage returnImage(String mediaId) {
-        ResponseImage responseImage = new ResponseImage();
+    public ImageResponse returnImage(String mediaId) {
+        ImageResponse responseImage = new ImageResponse();
         responseImage.setImage(new Image(mediaId));
         return responseImage;
     }

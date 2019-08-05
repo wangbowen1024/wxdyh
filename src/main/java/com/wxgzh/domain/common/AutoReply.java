@@ -1,4 +1,4 @@
-package com.wxgzh.domain;
+package com.wxgzh.domain.common;
 
 import com.wxgzh.domain.response.BaseResponseMessage;
 

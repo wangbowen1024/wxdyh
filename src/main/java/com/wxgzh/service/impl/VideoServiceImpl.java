@@ -1,8 +1,8 @@
 package com.wxgzh.service.impl;
 
 import com.wxgzh.dao.VideoDao;
-import com.wxgzh.domain.request.RequestVideo;
-import com.wxgzh.domain.response.ResponseVideo;
+import com.wxgzh.domain.request.VideoRequest;
+import com.wxgzh.domain.response.VideoResponse;
 import com.wxgzh.domain.innerclass.Video;
 import com.wxgzh.service.VideoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,18 +21,18 @@ public class VideoServiceImpl implements VideoService {
     private VideoDao videoDao;
 
     @Override
-    public void saveVideo(RequestVideo requestVideo) {
+    public void saveVideo(VideoRequest requestVideo) {
         videoDao.saveVideo(requestVideo);
     }
 
     @Override
-    public ResponseVideo returnVideo(String mediaId, String title, String description) {
+    public VideoResponse returnVideo(String mediaId, String title, String description) {
         return returnVideo(new Video(mediaId, title, description));
     }
 
     @Override
-    public ResponseVideo returnVideo(Video video) {
-        ResponseVideo responseVideo = new ResponseVideo();
+    public VideoResponse returnVideo(Video video) {
+        VideoResponse responseVideo = new VideoResponse();
         responseVideo.setVideo(video);
         return responseVideo;
     }

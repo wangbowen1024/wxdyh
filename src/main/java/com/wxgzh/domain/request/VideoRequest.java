@@ -7,7 +7,7 @@ package com.wxgzh.domain.request;
  * @author BowenWang
  * @date 2019/08/05
  */
-public class RequestVideo extends BaseRequestMessage {
+public class VideoRequest extends BaseRequestMessage {
     /**
      * 视频消息媒体id，可以调用获取临时素材接口拉取数据。
      */

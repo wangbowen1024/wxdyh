@@ -1,6 +1,6 @@
 package com.wxgzh.test;
 
-import com.wxgzh.domain.request.RequestText;
+import com.wxgzh.domain.request.TextRequest;
 import com.wxgzh.service.TextService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -25,7 +25,7 @@ public class TextServiceTest {
      */
     @Test
     public void testSaveText() {
-        RequestText requestTextMessage = new RequestText();
+        TextRequest requestTextMessage = new TextRequest();
         requestTextMessage.setCreateTime("3");
         requestTextMessage.setFromUserName("4");
         requestTextMessage.setMsgId("5");

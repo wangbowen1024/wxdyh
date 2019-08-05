@@ -1,8 +1,8 @@
 package com.wxgzh.service.impl;
 
 import com.wxgzh.dao.VoiceDao;
-import com.wxgzh.domain.request.RequestVoice;
-import com.wxgzh.domain.response.ResponseVoice;
+import com.wxgzh.domain.request.VoiceRequest;
+import com.wxgzh.domain.response.VoiceResponse;
 import com.wxgzh.domain.innerclass.Voice;
 import com.wxgzh.service.VoiceService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,14 +21,14 @@ public class VoiceServiceImpl implements VoiceService {
     private VoiceDao voiceDao;
 
     @Override
-    public void saveVoice(RequestVoice requestVoice) {
+    public void saveVoice(VoiceRequest requestVoice) {
         voiceDao.saveVoice(requestVoice);
     }
 
     @Override
-    public ResponseVoice returnVoice(String mediaId) {
+    public VoiceResponse returnVoice(String mediaId) {
         Voice voice = new Voice(mediaId);
-        ResponseVoice responseVoice = new ResponseVoice();
+        VoiceResponse responseVoice = new VoiceResponse();
         responseVoice.setVoice(voice);
         return responseVoice;
     }

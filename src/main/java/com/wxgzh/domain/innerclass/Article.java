@@ -15,14 +15,14 @@ import java.util.List;
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Article implements Serializable {
 
-    @XmlElement(name = "Items")
-    private List<Item> items;
+    @XmlElement(name = "Item")
+    private Item item;
 
-    public List<Item> getItems() {
-        return items;
+    public Item getItem() {
+        return item;
     }
 
-    public void setItems(List<Item> items) {
-        this.items = items;
+    public void setItem(Item item) {
+        this.item = item;
     }
 }

@@ -1,6 +1,6 @@
 package com.wxgzh.dao;
 
-import com.wxgzh.domain.request.RequestVoice;
+import com.wxgzh.domain.request.VoiceRequest;
 import org.apache.ibatis.annotations.Insert;
 import org.springframework.stereotype.Repository;
 
@@ -17,5 +17,5 @@ public interface VoiceDao {
      * @param requestVoiceMessage
      */
     @Insert("insert into voiceRecord(toUserName,fromUserName,createTime,msgType,msgId,mediaId,format,recognition) values(#{toUserName},#{fromUserName},#{createTime},#{msgType},#{msgId},#{mediaId},#{format},#{recognition})")
-    void saveVoice(RequestVoice requestVoiceMessage);
+    void saveVoice(VoiceRequest requestVoiceMessage);
 }

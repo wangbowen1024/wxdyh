@@ -7,7 +7,7 @@ package com.wxgzh.domain.request;
  * @author BowenWang
  * @date 2019/08/04
  */
-public class RequestImage extends BaseRequestMessage {
+public class ImageRequest extends BaseRequestMessage {
 
     /**
      * 图片链接（由系统生成）

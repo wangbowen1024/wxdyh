@@ -3,8 +3,8 @@ package com.wxgzh.service.impl;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.wxgzh.dao.TextDao;
-import com.wxgzh.domain.request.RequestText;
-import com.wxgzh.domain.response.ResponseText;
+import com.wxgzh.domain.request.TextRequest;
+import com.wxgzh.domain.response.TextResponse;
 import com.wxgzh.service.TextService;
 import com.wxgzh.utils.HttpUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +25,7 @@ public class TextServiceImpl implements TextService {
     private TextDao textDao;
 
     @Override
-    public ResponseText getRobotReply(String question) {
+    public TextResponse getRobotReply(String question) {
         HashMap<String, String> map = new HashMap<>(1);
         map.put("question", question);
         String result = HttpUtil.doPost("http://101.37.245.209:9999/robot", map);
@@ -34,19 +34,19 @@ public class TextServiceImpl implements TextService {
         JSONObject slots = semantic.getJSONArray("slots").getJSONObject(0);
         String normValue = slots.getString("normValue");
 
-        ResponseText responseTextMessage = new ResponseText();
+        TextResponse responseTextMessage = new TextResponse();
         responseTextMessage.setContent(normValue);
         return responseTextMessage;
     }
 
     @Override
-    public void saveText(RequestText requestTextMessage) {
+    public void saveText(TextRequest requestTextMessage) {
         textDao.saveText(requestTextMessage);
     }
 
     @Override
-    public ResponseText returnText(String content) {
-        ResponseText responseText = new ResponseText();
+    public TextResponse returnText(String content) {
+        TextResponse responseText = new TextResponse();
         responseText.setContent(content);
         return responseText;
     }
