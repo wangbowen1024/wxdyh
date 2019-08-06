@@ -1,6 +1,6 @@
 package com.wxgzh.domain.response;
 
-import com.wxgzh.domain.innerclass.Voice;
+import com.wxgzh.domain.material.Voice;
 
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;

@@ -1,6 +1,6 @@
 package com.wxgzh.service;
 
-import com.wxgzh.domain.innerclass.Item;
+import com.wxgzh.domain.material.Item;
 import com.wxgzh.domain.response.NewsResponse;
 
 /**

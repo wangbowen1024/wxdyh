@@ -6,8 +6,9 @@ import com.wxgzh.domain.request.TextRequest;
 import com.wxgzh.domain.request.VideoRequest;
 import com.wxgzh.domain.request.VoiceRequest;
 import com.wxgzh.domain.response.BaseResponseMessage;
-import com.wxgzh.enums.Message;
+import com.wxgzh.enums.MaterialEnum;
 import com.wxgzh.service.*;
+import com.wxgzh.utils.TokenUtil;
 import com.wxgzh.utils.SignUtil;
 import com.wxgzh.utils.XmlUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -78,10 +79,10 @@ public class WeiXinApiController {
         String fromUserName = (String) params.get("FromUserName");
         // 获取消息类型
         String msgType = (String) params.get("MsgType");
-        if (Message.TEXT.getMsgType().equals(msgType) || Message.VOICE.getMsgType().equals(msgType)) {
+        if (MaterialEnum.TEXT.getType().equals(msgType) || MaterialEnum.VOICE.getType().equals(msgType)) {
             // 用于储存文本或语音转换文本结果
             String content;
-            if (Message.TEXT.getMsgType().equals(msgType)) {
+            if (MaterialEnum.TEXT.getType().equals(msgType)) {
                 // 接收文本消息
                 TextRequest message = (TextRequest) XmlUtil.mapToBean(params, TextRequest.class);
                 textService.saveText(message);
@@ -94,6 +95,12 @@ public class WeiXinApiController {
                 return checkAdminMessage(params, fromUserName);
             }
             // ******************************自定义匹配规则以及对应的业务,注意匹配顺序**********************************
+            /**
+             * 获取TOKEN
+             */
+            if (content.contains("获取令牌")) {
+                return responseParse(textService.returnText(TokenUtil.getAccessToken()), fromUserName);
+            }
             /*
              * 获取投票
              */
@@ -132,12 +139,12 @@ public class WeiXinApiController {
                 return responseParse(textService.getRobotReply(content), fromUserName);
             }
             // ----------------------------------      E      N      D      ----------------------------------------
-        } else if (Message.IMAGE.getMsgType().equals(msgType)) {
+        } else if (MaterialEnum.IMAGE.getType().equals(msgType)) {
             // 接收是图片消息
             ImageRequest message = (ImageRequest) XmlUtil.mapToBean(params, ImageRequest.class);
             imageService.saveImage(message);
             return checkAdminMessage(params, fromUserName);
-        } else if (Message.VIDEO.getMsgType().equals(msgType) || Message.SHORT_VIDEO.getMsgType().equals(msgType)) {
+        } else if (MaterialEnum.VIDEO.getType().equals(msgType) || MaterialEnum.SHORT_VIDEO.getType().equals(msgType)) {
             // 接收视频（短视频）消息
             VideoRequest message = (VideoRequest) XmlUtil.mapToBean(params, VideoRequest.class);
             videoService.saveVideo(message);
@@ -156,7 +163,7 @@ public class WeiXinApiController {
         if (obj != null) {
             // 配置基本回复属性
             obj.setToUserName(toUserName);
-            obj.setFromUserName(ConfigInfo.wxgzhId);
+            obj.setFromUserName(ConfigInfo.WXGZH_ID);
             obj.setCreateTime(String.valueOf(System.currentTimeMillis()));
         }
         return obj;
@@ -170,7 +177,7 @@ public class WeiXinApiController {
      */
     private Object checkAdminMessage(Map<String, Object> map, String fromUserName ) {
         // 如果发送者是管理员
-        if (ConfigInfo.adminSet.contains(fromUserName)) {
+        if (ConfigInfo.ADMIN_SET.contains(fromUserName)) {
             // 如果包含MediaId值
             if (map.containsKey("MediaId")) {
                 return responseParse(textService.returnText("MediaId: " + map.get("MediaId")),

@@ -1,6 +1,7 @@
 package com.wxgzh.service.impl;
 
-import com.wxgzh.domain.innerclass.Item;
+import com.wxgzh.domain.material.Article;
+import com.wxgzh.domain.material.Item;
 import com.wxgzh.domain.response.NewsResponse;
 import com.wxgzh.service.NewsServce;
 import org.springframework.stereotype.Service;
@@ -23,7 +24,8 @@ public class NewsServiceImpl implements NewsServce {
     @Override
     public NewsResponse returnNews(Item item) {
         NewsResponse responseNews = new NewsResponse();
-        responseNews.getArticle().setItem(item);
+        Article article = new Article(item);
+        responseNews.setArticle(article);
         return responseNews;
     }
 }

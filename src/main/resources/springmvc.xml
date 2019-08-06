@@ -10,6 +10,7 @@
         http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context.xsd">
 
+
     <!-- 5、扫描注解：仅Controller注解 -->
     <context:component-scan base-package="com.wxgzh">
         <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
@@ -27,6 +28,17 @@
     <mvc:resources mapping="/images/**" location="/images/"/>
 
     <!-- 8、启用SpringMVC注解支持 -->
-    <mvc:annotation-driven/>
+    <mvc:annotation-driven>
+        <mvc:message-converters>
+            <bean class="com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter">
+                <property name="supportedMediaTypes">
+                    <list>
+                        <value>text/html;charset=UTF-8</value>
+                        <value>application/json;charset=UTF-8</value>
+                    </list>
+                </property>
+            </bean>
+        </mvc:message-converters>
+    </mvc:annotation-driven>
 
 </beans>

@@ -3,7 +3,7 @@ package com.wxgzh.service.impl;
 import com.wxgzh.dao.ImageDao;
 import com.wxgzh.domain.request.ImageRequest;
 import com.wxgzh.domain.response.ImageResponse;
-import com.wxgzh.domain.innerclass.Image;
+import com.wxgzh.domain.material.Image;
 import com.wxgzh.service.ImageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

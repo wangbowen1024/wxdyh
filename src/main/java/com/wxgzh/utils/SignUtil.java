@@ -22,7 +22,7 @@ public class SignUtil {
      * @return
      */
     public static boolean checkSignature(String signature, String timestamp,String nonce) {
-        String[] arr = new String[]{ConfigInfo.token, timestamp, nonce};
+        String[] arr = new String[]{ConfigInfo.TOKEN, timestamp, nonce};
         // 将token、timestamp、nonce三个参数进行字典序排序
         sort(arr);
         StringBuilder content = new StringBuilder();

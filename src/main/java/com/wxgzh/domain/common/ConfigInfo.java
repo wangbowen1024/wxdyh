@@ -1,6 +1,9 @@
 package com.wxgzh.domain.common;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.HashSet;
+import java.util.Properties;
 import java.util.Set;
 
 /**
@@ -14,45 +17,52 @@ public class ConfigInfo {
     /**
      * 微信公众号原始ID
      */
-    public static String wxgzhId = "gh_453696665e91";
-
-    /**
-     * 令牌(Token)
-     */
-    public static String token = "23f2401862304246b963f92117515f7a";
-
-    /**
-     * 服务器地址(URL)
-     */
-    public static String url = "http://wangbowen.cn/WX_GZH/CodeWen/api";
+    public static final String WXGZH_ID;
 
     /**
      * 消息加解密密钥
      */
-    public static String encodingAESKey = "II7cHczIfng2vktH4U0oNShHOIwlx4UKFzUCgkmOcgR";
+    public static final String ENCODING_AES_KEY;
 
     /**
      * AppID
      */
-    public static String appId = "wxf1b19cbb144bdc64";
+    public static final String APP_ID;
 
     /**
      * AppSecret
      */
-    public static String appSecret = "51a35f26295ae8e91086906c308b7469";
+    public static final String APP_SECRET;
+
+    /**
+     * Token
+     */
+    public static final String TOKEN;
 
     /**
      * 管理员列表
      */
-    public static Set<String> adminSet;
+    public static Set<String> ADMIN_SET = new HashSet<>();
 
     /**
      * 信息是否被更新了
      */
-    public static boolean isUpdate = false;
+    public static boolean IS_UPDATE = false;
 
     static {
-        adminSet = new HashSet<>();
-        adminSet.add("ozQB9uIfVUXhbcz5GyoOiDsgo0aI");
+        Properties properties = new Properties();
+        InputStream inputStream = ConfigInfo.class.getResourceAsStream("gzhConfig.properties");
+        try {
+            properties.load(inputStream);
+        } catch (IOException e) {
+            System.out.println("【ERROR】gzhConfig.properties读取失败");
+        }
+        WXGZH_ID = properties.getProperty("WXGZH_ID");
+        ENCODING_AES_KEY = properties.getProperty("ENCODING_AES_KEY");
+        APP_ID = properties.getProperty("APP_ID");
+        APP_SECRET = properties.getProperty("APP_SECRET");
+        TOKEN = properties.getProperty("TOKEN");
     }
+
+
 }

@@ -3,7 +3,7 @@ package com.wxgzh.service.impl;
 import com.wxgzh.dao.VideoDao;
 import com.wxgzh.domain.request.VideoRequest;
 import com.wxgzh.domain.response.VideoResponse;
-import com.wxgzh.domain.innerclass.Video;
+import com.wxgzh.domain.material.Video;
 import com.wxgzh.service.VideoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

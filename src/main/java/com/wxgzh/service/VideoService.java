@@ -2,7 +2,7 @@ package com.wxgzh.service;
 
 import com.wxgzh.domain.request.VideoRequest;
 import com.wxgzh.domain.response.VideoResponse;
-import com.wxgzh.domain.innerclass.Video;
+import com.wxgzh.domain.material.Video;
 
 /**
  * VideoService class

@@ -1,6 +1,6 @@
 package com.wxgzh.domain.response;
 
-import com.wxgzh.domain.innerclass.Video;
+import com.wxgzh.domain.material.Video;
 
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;

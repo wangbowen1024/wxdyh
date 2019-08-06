@@ -3,7 +3,7 @@ package com.wxgzh.service.impl;
 import com.wxgzh.dao.VoiceDao;
 import com.wxgzh.domain.request.VoiceRequest;
 import com.wxgzh.domain.response.VoiceResponse;
-import com.wxgzh.domain.innerclass.Voice;
+import com.wxgzh.domain.material.Voice;
 import com.wxgzh.service.VoiceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

@@ -1,6 +1,6 @@
 package com.wxgzh.domain.response;
 
-import com.wxgzh.domain.innerclass.Image;
+import com.wxgzh.domain.material.Image;
 
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
