@@ -1,6 +1,5 @@
 package com.wxgzh.controller;
 
-import com.alibaba.fastjson.JSON;
 import com.wxgzh.enums.ErrorEnum;
 import com.wxgzh.enums.MaterialEnum;
 import com.wxgzh.service.MaterialService;
@@ -28,15 +27,12 @@ public class MaterialController {
     @Autowired
     private MaterialService materialService;
 
-    private String token = "24_-Sm5Ic9J5uax2FT1zIzTqPk49mUhO-3DM8X4_N0AVt6koK1klAbW5PVnRjS4ttcaR1jKGIqqa8wtlErb_AWYVZWRbnRwVLM6alspwns-6Brm4me43CZCgIEr024-X6Gj45oWCh3lVZWxekbyJFEhAIAZVU";
-
-
     @GetMapping("/{type}")
     @ResponseBody
     public Object getMaterial(@PathVariable String type) throws Exception {
         if (MaterialEnum.NEWS.getType().equals(type) || MaterialEnum.IMAGE.getType().equals(type) ||
                 MaterialEnum.VIDEO.getType().equals(type) || MaterialEnum.VOICE.getType().equals(type)) {
-            return materialService.getMaterialOfType(token, type);
+            return materialService.getMaterialOfType(TokenUtil.getAccessToken(), type);
         } else {
             return ErrorEnum.TYPE_ERROR.toJson();
         }
