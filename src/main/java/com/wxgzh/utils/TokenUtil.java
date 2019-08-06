@@ -1,6 +1,7 @@
 package com.wxgzh.utils;
 
 import com.alibaba.fastjson.JSONObject;
+import com.wxgzh.domain.common.ConfigInfo;
 import org.apache.log4j.Logger;
 
 import java.io.InputStream;
@@ -40,7 +41,9 @@ public class TokenUtil {
         // token无效才重新获取
         Long nowTime = System.currentTimeMillis();
         if (accessToken == null || nowTime.compareTo(outTime) > 0) {
-            URL url = new URL(TOKEN_URL);
+            String tokenUrl = TOKEN_URL.replace("APPSECRET", ConfigInfo.APP_SECRET)
+                    .replace("APPID", ConfigInfo.APP_ID);
+            URL url = new URL(tokenUrl);
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 
             connection.setRequestMethod("GET");

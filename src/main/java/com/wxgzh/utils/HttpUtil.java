@@ -37,7 +37,7 @@ import java.util.Map;
  */
 public class HttpUtil {
 
-    private static Logger logger = Logger.getLogger(HttpUtil.class);
+    private static final Logger logger = Logger.getLogger(HttpUtil.class);
 
     /**
      * 发送GET请求

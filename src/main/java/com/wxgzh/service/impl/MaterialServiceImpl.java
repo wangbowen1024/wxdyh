@@ -35,7 +35,7 @@ public class MaterialServiceImpl implements MaterialService {
      */
     private static final String MATERIAL_LIST_URL = "https://api.weixin.qq.com/cgi-bin/material/batchget_material?access_token=ACCESS_TOKEN";
 
-    private static Logger logger = Logger.getLogger(MaterialServiceImpl.class);
+    private static final Logger logger = Logger.getLogger(MaterialServiceImpl.class);
 
 
     @Override
