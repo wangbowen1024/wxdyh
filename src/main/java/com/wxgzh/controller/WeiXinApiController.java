@@ -105,13 +105,19 @@ public class WeiXinApiController {
              * 获取投票
              */
             if (content.contains("获取投票")) {
-                return responseParse(newsServce.returnNews("投票", "投票回复测试","http://mmbiz.qpic.cn/mmbiz_jpg/r4zXRibcqibMVuO1nedMTA0FxSC9ZnQproEa1HdGiagh5iaFL5l01cCN3ctTl55pJH4JJNP0Rf9mqmb5allCiaxroDw/0?wx_fmt=jpeg", "http://mp.weixin.qq.com/s?__biz=MzA5NTE5OTk0OQ==&mid=100000005&idx=1&sn=e646304a7b0de01a725a25c8ef7ddbef&chksm=1043b6a727343fb1d753dee6f5a8b4c481438bbed062df496f9d4ce164512a34b4ad3b70e939#rd"),fromUserName);
+                return responseParse(newsServce.returnNews("投票",
+                        "投票回复测试",
+                        "http://mmbiz.qpic.cn/mmbiz_jpg/r4zXRibcqibMVuO1nedMTA0FxSC9ZnQproEa1HdGiagh5iaFL5l01cCN3ctTl55pJH4JJNP0Rf9mqmb5allCiaxroDw/0?wx_fmt=jpeg",
+                        "http://mp.weixin.qq.com/s?__biz=MzA5NTE5OTk0OQ==&mid=100000005&idx=1&sn=e646304a7b0de01a725a25c8ef7ddbef&chksm=1043b6a727343fb1d753dee6f5a8b4c481438bbed062df496f9d4ce164512a34b4ad3b70e939#rd"),fromUserName);
             }
             /*
              * 获取文章
              */
             if (content.contains("获取文章")) {
-                return responseParse(newsServce.returnNews("文章", "文章回复测试", "http://mmbiz.qpic.cn/mmbiz_jpg/r4zXRibcqibMVuO1nedMTA0FxSC9ZnQpronIwDSCyZpFIkbJwblbIibmvRYXKib1siaoQ2icOat34M8660lDVsSkQzpQ/0?wx_fmt=jpeg","http://mp.weixin.qq.com/s?__biz=MzA5NTE5OTk0OQ==&mid=100000001&idx=1&sn=76fe90dfa80b68eef04376f303e8da5c&chksm=1043b6a327343fb512b6433fc31258e190b78f9479d2530af9890441bfc1c49f18049727b12c#rd"), fromUserName);
+                return responseParse(newsServce.returnNews("文章",
+                        "文章回复测试",
+                        "http://mmbiz.qpic.cn/mmbiz_jpg/r4zXRibcqibMVuO1nedMTA0FxSC9ZnQpronIwDSCyZpFIkbJwblbIibmvRYXKib1siaoQ2icOat34M8660lDVsSkQzpQ/0?wx_fmt=jpeg",
+                        "http://mp.weixin.qq.com/s?__biz=MzA5NTE5OTk0OQ==&mid=100000001&idx=1&sn=76fe90dfa80b68eef04376f303e8da5c&chksm=1043b6a327343fb512b6433fc31258e190b78f9479d2530af9890441bfc1c49f18049727b12c#rd"), fromUserName);
             }
             /*
             * 测试返回图片

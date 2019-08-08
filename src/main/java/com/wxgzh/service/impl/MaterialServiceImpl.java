@@ -73,7 +73,8 @@ public class MaterialServiceImpl implements MaterialService {
      * @param count 返回素材的数量，取值在1到20之间
      * @return
      */
-    private JSONObject getMaterialJsonObject(String accessToken,String type, int offset, int count) throws Exception {
+    @Override
+    public JSONObject getMaterialJsonObject(String accessToken,String type, int offset, int count) {
         // 替换调access_token
         String requestUrl = MATERIAL_LIST_URL.replace("ACCESS_TOKEN", accessToken);
         // 调用接口所需要的参数实体类

@@ -17,8 +17,12 @@ public interface MaterialService {
 
     /**
      * 获取指定类型的素材集合
+     *
      * @param type
      * @return
      */
     JSONArray getMaterialOfType(String accessToken, String type) throws Exception;
+
+
+    JSONObject getMaterialJsonObject(String accessToken, String type, int offset, int count);
 }
