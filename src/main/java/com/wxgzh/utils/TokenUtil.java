@@ -20,12 +20,12 @@ public class TokenUtil {
     /**
      * access_Token
      */
-    private static String accessToken;
+    private static String accessToken = "24_RPLEUbX3JlAY3yp2wj3p39WBPGyMaZxCmIc5CpiUeH5WsloD2S328gC_K4GBYnDlkYrEJlkSIZSfr0nqhImrisGhgw55Kbr1mfS4Y1-Sz3klJVj5hlpPfDAfe0ZFDx2lufpzuZjTNJzT2HT_IRLgACAAJD";
 
     /**
      * 获取Token的时间,毫秒
      */
-    private static Long outTime = 0L;
+    private static Long outTime = System.currentTimeMillis() + 60 * 60 * 1000;
 
     /**
      * 获取access_token的URL

@@ -43,6 +43,11 @@ public class News {
      */
     private int show_cover_pic;
 
+    /**
+     * 缩略图URL
+     */
+    private String thumb_url;
+
     public String getTitle() {
         return title;
     }
@@ -99,16 +104,11 @@ public class News {
         this.show_cover_pic = show_cover_pic;
     }
 
-    @Override
-    public String toString() {
-        return "Material{" +
-                "title='" + title + '\'' +
-                ", thumb_media_id='" + thumb_media_id + '\'' +
-                ", author='" + author + '\'' +
-                ", digest='" + digest + '\'' +
-                ", content='" + content + '\'' +
-                ", url='" + url + '\'' +
-                ", show_cover_pic=" + show_cover_pic +
-                '}';
+    public String getThumb_url() {
+        return thumb_url;
+    }
+
+    public void setThumb_url(String thumb_url) {
+        this.thumb_url = thumb_url;
     }
 }

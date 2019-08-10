@@ -37,7 +37,6 @@ public class Item {
     @XmlElement(name = "Url")
     private String url;
 
-
     public Item(String title, String description, String picUrl, String url) {
         this.title = title;
         this.description = description;
@@ -75,5 +74,15 @@ public class Item {
 
     public void setUrl(String url) {
         this.url = url;
+    }
+
+    @Override
+    public String toString() {
+        return "Item{" +
+                "title='" + title + '\'' +
+                ", description='" + description + '\'' +
+                ", picUrl='" + picUrl + '\'' +
+                ", url='" + url + '\'' +
+                '}';
     }
 }

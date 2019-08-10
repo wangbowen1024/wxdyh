@@ -25,21 +25,6 @@ public class TextServiceImpl implements TextService {
     private TextDao textDao;
 
     @Override
-    public TextResponse getRobotReply(String question) {
-        HashMap<String, String> map = new HashMap<>(1);
-        map.put("question", question);
-        String result = HttpUtil.doPost("http://101.37.245.209:9999/robot", map);
-        JSONObject jsonObject = (JSONObject) JSON.parse(result);
-        JSONObject semantic = jsonObject.getJSONArray("semantic").getJSONObject(0);
-        JSONObject slots = semantic.getJSONArray("slots").getJSONObject(0);
-        String normValue = slots.getString("normValue");
-
-        TextResponse responseTextMessage = new TextResponse();
-        responseTextMessage.setContent(normValue);
-        return responseTextMessage;
-    }
-
-    @Override
     public void saveText(TextRequest requestTextMessage) {
         textDao.saveText(requestTextMessage);
     }

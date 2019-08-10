@@ -13,7 +13,9 @@ import com.wxgzh.utils.SignUtil;
 import com.wxgzh.utils.XmlUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -28,7 +30,6 @@ import java.util.Map;
  * @date 2019/08/03
  */
 @Controller
-@RequestMapping("/CodeWen")
 public class WeiXinApiController {
 
     @Autowired
@@ -68,13 +69,13 @@ public class WeiXinApiController {
 
     /**
      * 接收用户发送的信息
-     * @param request
+     * @param xml
      * @return
      */
     @RequestMapping(value = "/api", method = RequestMethod.POST, produces = {"application/xml;charset=UTF-8"})
-    @ResponseBody
-    public Object receiveMessage(@RequestBody String request) throws Exception {
-        Map<String, Object> params = XmlUtil.xmlStrToMap(request);
+    public void receiveMessage(@RequestBody String xml, HttpServletRequest request,
+                                 HttpServletResponse response) throws Exception {
+        Map<String, Object> params = XmlUtil.xmlStrToMap(xml);
         // 获取发送者ID
         String fromUserName = (String) params.get("FromUserName");
         // 获取消息类型
@@ -91,105 +92,22 @@ public class WeiXinApiController {
                 // 接收语音消息
                 VoiceRequest message = (VoiceRequest) XmlUtil.mapToBean(params, VoiceRequest.class);
                 voiceService.saveVoice(message);
-                content = message.getRecognition();
-                return checkAdminMessage(params, fromUserName);
+                // 语音最后会带一个中文句号
+                String tmp = message.getRecognition();
+                content = tmp.substring(0, tmp.length() - 1);
             }
-            // ******************************自定义匹配规则以及对应的业务,注意匹配顺序**********************************
-            /**
-             * 获取TOKEN
-             */
-            if (content.contains("获取令牌")) {
-                return responseParse(textService.returnText(TokenUtil.getAccessToken()), fromUserName);
-            }
-            /*
-             * 获取投票
-             */
-            if (content.contains("获取投票")) {
-                return responseParse(newsServce.returnNews("投票",
-                        "投票回复测试",
-                        "http://mmbiz.qpic.cn/mmbiz_jpg/r4zXRibcqibMVuO1nedMTA0FxSC9ZnQproEa1HdGiagh5iaFL5l01cCN3ctTl55pJH4JJNP0Rf9mqmb5allCiaxroDw/0?wx_fmt=jpeg",
-                        "http://mp.weixin.qq.com/s?__biz=MzA5NTE5OTk0OQ==&mid=100000005&idx=1&sn=e646304a7b0de01a725a25c8ef7ddbef&chksm=1043b6a727343fb1d753dee6f5a8b4c481438bbed062df496f9d4ce164512a34b4ad3b70e939#rd"),fromUserName);
-            }
-            /*
-             * 获取文章
-             */
-            if (content.contains("获取文章")) {
-                return responseParse(newsServce.returnNews("文章",
-                        "文章回复测试",
-                        "http://mmbiz.qpic.cn/mmbiz_jpg/r4zXRibcqibMVuO1nedMTA0FxSC9ZnQpronIwDSCyZpFIkbJwblbIibmvRYXKib1siaoQ2icOat34M8660lDVsSkQzpQ/0?wx_fmt=jpeg",
-                        "http://mp.weixin.qq.com/s?__biz=MzA5NTE5OTk0OQ==&mid=100000001&idx=1&sn=76fe90dfa80b68eef04376f303e8da5c&chksm=1043b6a327343fb512b6433fc31258e190b78f9479d2530af9890441bfc1c49f18049727b12c#rd"), fromUserName);
-            }
-            /*
-            * 测试返回图片
-            */
-            if (content.contains("获取图片")) {
-                return responseParse(imageService.returnImage("vNC5zO819IakQUwBUE5YardQ-8AxGc3q6-5KkT_C0LI"),
-                        fromUserName);
-            }
-            /*
-             * 测试返回语音
-             */
-            if (content.contains("获取语音")) {
-                return responseParse(voiceService.returnVoice("vNC5zO819IakQUwBUE5YaiIOnLpJAQdpccvzYrAJuuU"),
-                        fromUserName);
-            }
-            /*
-             * 测试返回视频
-             */
-            if (content.contains("获取视频")) {
-                return responseParse(videoService.returnVideo("vNC5zO819IakQUwBUE5YaibP2SENLKyEUkiiftUG724", "测试视频", "用于测试返回视频"),
-                        fromUserName);
-            }
-            if (content.length() > 0) {
-                // 机器人回复
-                return responseParse(textService.getRobotReply(content), fromUserName);
-            }
-            // ----------------------------------      E      N      D      ----------------------------------------
+            // 转发请求给消息控制器
+            request.setAttribute("message", content);
+            request.setAttribute("sender", fromUserName);
+            request.getRequestDispatcher("/message").forward(request, response);
         } else if (MaterialEnum.IMAGE.getType().equals(msgType)) {
             // 接收是图片消息
             ImageRequest message = (ImageRequest) XmlUtil.mapToBean(params, ImageRequest.class);
             imageService.saveImage(message);
-            return checkAdminMessage(params, fromUserName);
         } else if (MaterialEnum.VIDEO.getType().equals(msgType) || MaterialEnum.SHORT_VIDEO.getType().equals(msgType)) {
             // 接收视频（短视频）消息
             VideoRequest message = (VideoRequest) XmlUtil.mapToBean(params, VideoRequest.class);
             videoService.saveVideo(message);
-            return checkAdminMessage(params, fromUserName);
         }
-        return "success";
-    }
-
-    /**
-     * 处理返回结果
-     * @param obj Response响应消息类
-     * @param toUserName 接收者ID
-     * @return
-     */
-    private Object responseParse(BaseResponseMessage obj, String toUserName) {
-        if (obj != null) {
-            // 配置基本回复属性
-            obj.setToUserName(toUserName);
-            obj.setFromUserName(ConfigInfo.WXGZH_ID);
-            obj.setCreateTime(String.valueOf(System.currentTimeMillis()));
-        }
-        return obj;
-    }
-
-    /**
-     * 检查是否是管理员消息。是：若有MediaId返回
-     * @param map
-     * @param fromUserName
-     * @return
-     */
-    private Object checkAdminMessage(Map<String, Object> map, String fromUserName ) {
-        // 如果发送者是管理员
-        if (ConfigInfo.ADMIN_SET.contains(fromUserName)) {
-            // 如果包含MediaId值
-            if (map.containsKey("MediaId")) {
-                return responseParse(textService.returnText("MediaId: " + map.get("MediaId")),
-                        fromUserName);
-            }
-        }
-        return "success";
     }
 }

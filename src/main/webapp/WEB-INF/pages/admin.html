@@ -6,10 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>微信订阅号管理后台</title>
     <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel="stylesheet" href="http://wangbowen.cn/WX_GZH/css/reset.css">
-    <link rel="stylesheet" type="text/css" href="http://wangbowen.cn/WX_GZH/css/default.css">
-    <link rel="stylesheet" href="http://wangbowen.cn/WX_GZH/css/style.css">
-    <script src="/js/modernizr.js"></script>
+    <link rel="stylesheet" href="http://localhost:8080/css/reset.css">
+    <link rel="stylesheet" type="text/css" href="http://localhost:8080/css/default.css">
+    <link rel="stylesheet" href="http://localhost:8080/css/style.css">
+    <script src="http://localhost:8080/js/modernizr.js"></script>
     <!--[if IE]>
     <script src="http://libs.baidu.com/html5shiv/3.7/html5shiv.min.js"></script>
     <![endif]-->
@@ -23,7 +23,7 @@
             <input type="search" placeholder="Search...">
         </form>
     </div>-->
-    <a href="#0" class="cd-nav-trigger"><span></span></a>
+    <a href="#" class="cd-nav-trigger"><span></span></a>
     <!--<nav class="cd-nav">
         <ul class="cd-top-nav"></ul>
     </nav>-->
@@ -34,34 +34,35 @@
         <ul class="no_line">
             <!--<li class="cd-label">管理菜单</li>-->
             <li class="has-children active comments ">
-                <a href="#0">消息管理</a>
+                <a href="#">消息管理</a>
                 <ul>
-                    <li><a href="#0">自动回复</a></li>
-                    <li><a href="#0">添加规则</a></li>
+                    <li onclick="get_rule_list()"><a href="#">规则列表</a></li>
+                    <li><a href="#">添加规则</a></li>
                 </ul>
             </li>
             <li class="has-children active bookmarks">
-                <a href="#0">素材管理</a>
+                <a href="#">素材管理</a>
                 <ul>
-                    <li onclick="get_list('news')"><a href="#0" id="mews_list">图文素材</a></li>
-                    <li onclick="get_list('voice')"><a href="#0" id="voice_list">语音素材</a></li>
-                    <li onclick="get_list('video')"><a href="#0" id="video_list">视频素材</a></li>
-                    <li onclick="get_list('image')"><a href="#0">图片素材</a></li>
+                    <li onclick="get_material_list('news')"><a href="#" id="mews_list">图文素材</a></li>
+                    <li onclick="get_material_list('voice')"><a href="#" id="voice_list">语音素材</a></li>
+                    <li onclick="get_material_list('video')"><a href="#" id="video_list">视频素材</a></li>
+                    <li onclick="get_material_list('image')"><a href="#" id="image_list">图片素材</a></li>
                 </ul>
             </li>
             <li class="has-children active users">
-                <a href="#0">成员管理</a>
+                <a href="#">成员管理</a>
                 <ul>
-                    <li><a href="#0">用户关注列表</a></li>
-                    <li><a href="#0">管理员列表</a></li>
+                    <li><a href="#">用户关注列表（未开发）</a></li>
+                    <li><a href="#">管理员列表（未开发）</a></li>
                 </ul>
             </li>
         </ul>
     </nav>
     <!-- 自动回复 -->
-    <!--<div class="content-wrapper">
+    <div class="content-wrapper">
         <div class="my_title">规则列表</div>
         <div>
+            <small style="color: red;font-size: small">注意事项：用户发送文字或语音信息时会按顺序从上往下匹配所有规则，遇到成功匹配直接返回，后续不再匹配</small>
             <table class="table table-hover">
                 <thead>
                 <tr>
@@ -70,67 +71,57 @@
                     <th>匹配方式</th>
                     <th>匹配内容</th>
                     <th>回复类型</th>
+                    <th>操作</th>
                 </tr>
                 </thead>
-                <tbody>
-                <tr>
+                <tbody id="rule_table_body">
+                <!--<tr>
                     <th scope="row">1</th>
                     <td>Mark</td>
                     <td>Otto</td>
                     <td>@mdo</td>
                     <td>@mdo</td>
-                </tr>
-                <tr>
-                    <th scope="row">2</th>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>@fat</td>
-                    <td>@mdo</td>
-                </tr>
-                <tr>
-                    <th scope="row">3</th>
-                    <td>Larry</td>
-                    <td>the Bird</td>
-                    <td>@twitter</td>
-                    <td>@mdo</td>
-                </tr>
+                </tr>-->
                 </tbody>
             </table>
         </div>
-    </div>-->
+    </div>
     <!-- 添加规则 -->
-    <!--<div class="content-wrapper">
+    <div class="content-wrapper">
         <div class="my_title">添加规则</div>
         <div>
             <div class="form-inline">
-                <label for="rule_name" style="margin:5px 30px 10px 0">规则名称</label>
+                <label for="rule_name" style="margin:5px 30px 10px 0" id="">规则名称</label>
                 <input type="text" class="form-control col-md-3" id="rule_name" placeholder="请输入规则名称">
             </div>
             <div>
                 <label style="margin:5px 30px 10px 0">匹配模式</label>
                 <label class="radio-inline">
-                    <input type="radio" name="matched_pattern" id="matched1" value="full" checked="checked"> 全匹配
+                    <input type="radio" name="matched_pattern" id="matched1" value="全匹配" checked="checked"> 全匹配
                 </label>
                 <label class="radio-inline">
-                    <input type="radio" name="matched_pattern" id="matched2" value="half"> 半匹配
+                    <input type="radio" name="matched_pattern" id="matched2" value="半匹配"> 半匹配
                 </label>
                 <label class="radio-inline">
-                    <input type="radio" name="matched_pattern" id="matched3" value="defined"> 自定义正则
+                    <input type="radio" name="matched_pattern" id="matched3" value="自定义"> 自定义正则
+                    <a href="https://www.runoob.com/w3cnote/regular-expression-30-minutes-tutorial.html" style="font-size: small"> 不懂正则？点此进入</a>
                 </label>
+            </div>
+            <div class="form-inline">
+                <small style="font-size: small;color: red">(注意事项：自定义正则，匹配模式为全匹配,注意不要将\输入成java开发中的\\，等其他语言特有的写法)</small>
             </div>
             <div class="form-inline">
                 <label style="margin:5px 30px 10px 0">匹配规则</label>
-                <input type="text" class="form-control col-md-3" placeholder="请输入匹配关键词">
+                <input type="text" class="form-control col-md-3" placeholder="请输入匹配关键词" id="rule">
             </div>
             <div class="form-inline">
                 <label style="margin:5px 30px 10px 0">模拟消息</label>
-                <input type="text" class="form-control col-md-3" placeholder="模拟用户发送的文本消息">
-                <button type="button" class="btn btn-success" style="margin-left: 10px">检 测</button>
+                <input type="text" class="form-control col-md-3" placeholder="模拟用户发送的文本消息" id="text">
+                <button type="button" class="btn btn-success" style="margin-left: 10px" id="check_reg_btn" onclick="check_reg_btn()">检 测</button>
             </div>
             <div class="form-inline">
                 <label style="margin:5px 30px 10px 0">匹配结果</label>
-                <input type="text" class="form-control col-md-3" placeholder="" readonly="readonly">
-                <span>（返回用户发送的文本根据规则匹配的结果）</span>
+                <input type="text" class="form-control col-md-3" placeholder="" readonly="readonly" id="reg_result">
             </div>
             <div>
                 <label style="margin:5px 30px 10px 0">回复类型</label>
@@ -141,29 +132,26 @@
                     <input type="radio" name="replay_type" id="replay_type2" value="image"> 图片
                 </label>
                 <label class="radio-inline">
-                    <input type="radio" name="replay_type" id="replay_type3" value="defined"> 语音
+                    <input type="radio" name="replay_type" id="replay_type3" value="voice"> 语音
                 </label>
                 <label class="radio-inline">
                     <input type="radio" name="replay_type" id="replay_type4" value="video"> 视频
                 </label>
                 <label class="radio-inline">
-                    <input type="radio" name="replay_type" id="replay_type5" value="defined"> 图文
+                    <input type="radio" name="replay_type" id="replay_type5" value="news"> 图文
                 </label>
             </div>
             <div class="form-inline">
-                <label style="margin:5px 30px 10px 0">回复文本</label>
-                <textarea class="form-control col-md-5" rows="7"></textarea>
-            </div>
-            <div class="form-inline" style="display: none">
-                <label style="margin:5px 30px 10px 0">回复素材</label>
-                <input type="text" class="form-control col-md-3" placeholder="请输入素材ID">
+                <label style="margin:5px 30px 10px 0">回复内容</label>
+                <textarea class="form-control col-md-5" rows="7" placeholder="文字类型：输入要回复的文字（支持换行）
+其他类型：输入素材列表中的素材ID" id="replay_context"></textarea>
             </div>
             <div style="margin: 20px auto">
-                <button type="button" class="btn btn-primary col-md-2">添 加 规 则</button>
+                <button type="button" class="btn btn-primary col-md-2" onclick="add_rule()">添 加 规 则</button>
             </div>
         </div>
-    </div>-->
-    <!-- 图文素材 -->
+    </div>
+    <!-- 素材列表 -->
     <div class="content-wrapper">
         <div class="my_title" id="material_title">素材</div>
         <div>
@@ -172,10 +160,10 @@
                 <tr>
                     <th>#</th>
                     <th>素材名称</th>
-                    <th>素材ID（复制到添加规则中）</th>
+                    <th>素材ID（复制到添加规则中的回复内容）</th>
                 </tr>
                 </thead>
-                <tbody id="table_body">
+                <tbody id="material_table_body">
                     <!-- 素材列表 -->
                 </tbody>
             </table>
@@ -184,23 +172,23 @@
 </main>
 <script src='https://libs.baidu.com/jquery/2.1.1/jquery.min.js'></script>
 <!--<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>-->
-<script src="http://wangbowen.cn/WX_GZH/js/jquery.menu-aim.js"></script>
-<script src="http://wangbowen.cn/WX_GZH/js/main.js"></script>
+<script src="http://localhost:8080/js/jquery.menu-aim.js"></script>
+<script src="http://localhost:8080/js/main.js"></script>
 <script src="https://cdn.bootcss.com/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://cdn.bootcss.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 <script>
     var token = "123456789";
-    function get_list(material_type) {
+    /* 获取素材列表 */
+    function get_material_list(material_type) {
         //请求参数
         var list = {};
-        //
         $.ajax({
             //请求方式
             type: "POST",
             //请求的媒体类型
             contentType: "application/json;charset=UTF-8",
             //请求地址
-            url: "http://localhost:8080/Material/" + material_type + "/" + token,
+            url: "http://localhost:8080/material/" + material_type,
             //数据，json字符串
             data: JSON.stringify(list),
             dataType: "json",
@@ -215,13 +203,17 @@
                     }else if (material_type === "voice") {
                         $("#material_title").html("语音素材");
                     }else if (material_type === "video") {
-                        $("#material_title").html("图片素材");
+                        $("#material_title").html("视频素材");
                     }
                     var str = "";
                     for (var i = 0; i < result.length; i++) {
-                        str += "<tr><th scope=\"row\">"+(i + 1)+"</th><td>"+result[i].name+"</td><td>"+result[i].media_id+"</td></tr>"
+                        if (material_type === "news") {
+                            str += "<tr><th scope=\"row\">" + (i + 1) + "</th><td>" + result[i].title + "</td><td>" + result[i].thumb_media_id + "</td></tr>";
+                        } else {
+                            str += "<tr><th scope=\"row\">" + (i + 1) + "</th><td>" + result[i].name + "</td><td>" + result[i].media_id + "</td></tr>";
+                        }
                     }
-                    $("#table_body").html(str);
+                    $("#material_table_body").html(str);
                 }else {
                     console.log(result.errcode + "," + result.errmsg);
                 }
@@ -233,9 +225,97 @@
             }
         });
     }
+
+    /* 检测规则 */
+    function check_reg_btn() {
+        var list = {
+            "type": $("input[name='matched_pattern']:checked").val(),
+            "rule": $("#rule").val(),
+            "text": $("#text").val()
+        };
+        $.ajax({
+            type: "POST",
+            contentType: "application/json;charset=UTF-8",
+            url: "http://localhost:8080/rule/check",
+            data: JSON.stringify(list),
+            dataType: "json",
+            success: function (result) {
+                if (result.status === "success") {
+                    $("#reg_result").val("匹配【成 功】");
+                } else {
+                    $("#reg_result").val("匹配【失 败】");
+                }
+            }
+        });
+    }
+
+    /* 添加规则 */
+    function add_rule() {
+        var list = {
+            "name":$("#rule_name").val(),
+            "type": $("input[name='matched_pattern']:checked").val(),
+            "content": $("#rule").val(),
+            "replayType":$("input[name='replay_type']:checked").val(),
+            "replayContent":$("#replay_context").val()
+        };
+        $.ajax({
+            type: "POST",
+            contentType: "application/json;charset=UTF-8",
+            url: "http://localhost:8080/rule/add",
+            data: JSON.stringify(list),
+            dataType: "json",
+            success: function (result) {
+                if (result.status === "success") {
+                    alert("添加成功!");
+                    get_rule_list();
+                } else {
+                    alert("添加失败!")
+                }
+            }
+        });
+    }
+
+    /* 规则列表 */
+    function get_rule_list() {
+        var list = {};
+        $.ajax({
+            type: "POST",
+            contentType: "application/json;charset=UTF-8",
+            url: "http://localhost:8080/rule/list",
+            data: JSON.stringify(list),
+            dataType: "json",
+            success: function (result) {
+                var str = "";
+                for (var i = 0; i < result.length; i++) {
+                    str += "<tr><th scope=\"row\">"+(i+1)+"</th><td>"+result[i].name+"</td><td>"+result[i].type+"</td><td>"+result[i].content+"</td><td>"+result[i].replayType+"</td><td><button type=\"button\" class=\"btn btn-danger\" onclick='delete_rule("+result[i].id+")'>删除</button></td></tr>";
+                }
+                $("#rule_table_body").html(str);
+            }
+        });
+    }
+
+    /* 删除规则 */
+    function delete_rule(id) {
+        var list = {};
+        $.ajax({
+            type: "POST",
+            contentType: "application/json;charset=UTF-8",
+            url: "http://localhost:8080/rule/delete/" + id,
+            data: JSON.stringify(list),
+            dataType: "json",
+            success: function (result) {
+                if (result.status === "success") {
+                    alert("删除成功!");
+                    get_rule_list();
+                } else {
+                    alert("删除失败!")
+                }
+            }
+        });
+    }
+
     $(function () {
-
-
+        get_rule_list();
     });
 </script>
 </body>

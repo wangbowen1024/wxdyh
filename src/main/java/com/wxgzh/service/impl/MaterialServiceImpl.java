@@ -106,7 +106,6 @@ public class MaterialServiceImpl implements MaterialService {
                     json = json.getJSONObject("content");
                     JSONArray arr = json.getJSONArray("news_item");
                     json = (JSONObject) arr.get(0);
-
                     News material = new News();
                     material.setTitle(json.getString("title"));
                     material.setAuthor(json.getString("author"));
@@ -114,6 +113,7 @@ public class MaterialServiceImpl implements MaterialService {
                     material.setThumb_media_id(json.getString("thumb_media_id"));
                     material.setUrl(json.getString("url"));
                     material.setContent(json.getString("content"));
+                    material.setThumb_url(json.getString("thumb_url"));
                     material.setShow_cover_pic(1);
                     lists.add(material);
                 }

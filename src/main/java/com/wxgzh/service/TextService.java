@@ -13,14 +13,6 @@ import com.wxgzh.domain.response.TextResponse;
 public interface TextService {
 
     /**
-     * 获取机器人回复
-     *
-     * @param question
-     * @return
-     */
-    TextResponse getRobotReply(String question);
-
-    /**
      * 保存文本消息
      *
      * @param requestTextMessage
