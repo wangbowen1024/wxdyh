@@ -1,12 +1,14 @@
 package com.wxgzh.domain.common;
 
+import java.io.Serializable;
+
 /**
  * User class
  *
  * @author BowenWang
  * @date 2019/08/11
  */
-public class User {
+public class User implements Serializable {
     /**
      * 数据库自增长ID
      */

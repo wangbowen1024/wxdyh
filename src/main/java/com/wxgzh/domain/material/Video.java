@@ -3,6 +3,7 @@ package com.wxgzh.domain.material;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
+import java.io.Serializable;
 
 /**
  * Video class
@@ -11,7 +12,7 @@ import javax.xml.bind.annotation.XmlElement;
  * @date 2019/08/04
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-public class Video {
+public class Video implements Serializable {
 
     /**
      * 通过素材管理中的接口上传多媒体文件，得到的id

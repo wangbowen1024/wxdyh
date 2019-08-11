@@ -1,5 +1,7 @@
 package com.wxgzh.domain.material;
 
+import java.io.Serializable;
+
 /**
  * MaterialImage class
  * 素材图片实体类
@@ -7,7 +9,7 @@ package com.wxgzh.domain.material;
  * @author BowenWang
  * @date 2019/08/05
  */
-public class Multimedia {
+public class Multimedia implements Serializable {
     /**
      * 要获取的素材的media_id
      */

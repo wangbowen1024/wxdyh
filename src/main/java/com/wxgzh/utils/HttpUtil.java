@@ -15,8 +15,6 @@ import org.apache.http.impl.client.HttpClients;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
 import org.apache.log4j.Logger;
-
-
 import javax.net.ssl.*;
 import java.io.*;
 import java.net.ConnectException;

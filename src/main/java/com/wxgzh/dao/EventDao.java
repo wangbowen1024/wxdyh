@@ -1,13 +1,11 @@
 package com.wxgzh.dao;
 
 import com.wxgzh.domain.common.User;
-import com.wxgzh.domain.request.EventRequest;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
 
 /**
  * EventDao class

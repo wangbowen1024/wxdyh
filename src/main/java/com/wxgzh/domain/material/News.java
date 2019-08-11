@@ -1,5 +1,7 @@
 package com.wxgzh.domain.material;
 
+import java.io.Serializable;
+
 /**
  * Meaterial class
  * 获取素材列表参数实体类
@@ -7,7 +9,7 @@ package com.wxgzh.domain.material;
  * @author BowenWang
  * @date 2019/08/05
  */
-public class News {
+public class News implements Serializable {
     /**
      * 图文消息的标题
      */

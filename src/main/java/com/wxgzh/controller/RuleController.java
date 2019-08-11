@@ -2,15 +2,12 @@ package com.wxgzh.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
-import com.wxgzh.dao.RuleDao;
 import com.wxgzh.domain.common.Rule;
 import com.wxgzh.service.RuleService;
 import com.wxgzh.utils.RegexpUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 
 /**

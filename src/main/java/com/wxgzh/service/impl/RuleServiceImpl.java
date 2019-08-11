@@ -2,7 +2,6 @@ package com.wxgzh.service.impl;
 
 import com.alibaba.fastjson.JSONObject;
 import com.wxgzh.controller.MessageController;
-import com.wxgzh.controller.RuleController;
 import com.wxgzh.dao.RuleDao;
 import com.wxgzh.domain.common.Rule;
 import com.wxgzh.service.RuleService;

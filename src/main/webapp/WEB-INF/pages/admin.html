@@ -6,11 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>微信订阅号管理后台</title>
     <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel="stylesheet" href="http://localhost:8080/css/reset.css">
-    <link rel="stylesheet" type="text/css" href="http://localhost:8080/css/default.css">
-    <link rel="stylesheet" href="http://localhost:8080/css/style.css">
-    <link rel="stylesheet" href="http://localhost:8080/css/alter.css">
-    <script src="http://localhost:8080/js/modernizr.js"></script>
+    <link rel="stylesheet" href="http://wangbowen.cn/WX_GZH/css/reset.css">
+    <link rel="stylesheet" type="text/css" href="http://wangbowen.cn/WX_GZH/css/default.css">
+    <link rel="stylesheet" href="http://wangbowen.cn/WX_GZH/css/style.css">
+    <link rel="stylesheet" href="http://wangbowen.cn/WX_GZH/css/alter.css">
+    <script src="http://wangbowen.cn/WX_GZH/js/modernizr.js"></script>
     <!--[if IE]>
     <script src="http://libs.baidu.com/html5shiv/3.7/html5shiv.min.js"></script>
     <![endif]-->
@@ -187,11 +187,11 @@
 </main>
 <script src='https://libs.baidu.com/jquery/2.1.1/jquery.min.js'></script>
 <!--<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>-->
-<script src="http://localhost:8080/js/jquery.menu-aim.js"></script>
-<script src="http://localhost:8080/js/main.js"></script>
+<script src="http://wangbowen.cn/WX_GZH/js/jquery.menu-aim.js"></script>
+<script src="http://wangbowen.cn/WX_GZH/js/main.js"></script>
 <script src="https://cdn.bootcss.com/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://cdn.bootcss.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-<script src="http://localhost:8080/js/alter.js"></script>
+<script src="http://wangbowen.cn/WX_GZH/js/alter.js"></script>
 <script>
     var fresh_type = "image";
 
@@ -200,7 +200,7 @@
         $.ajax({
             type: "POST",
             contentType: "application/json;charset=UTF-8",
-            url: "http://localhost:8080/material/fresh/" + fresh_type,
+            url: "http://wangbowen.cn/WX_GZH/material/fresh/" + fresh_type,
             dataType: "json",
             success: function (result) {
                 get_material_list(fresh_type);
@@ -223,7 +223,7 @@
             //请求的媒体类型
             contentType: "application/json;charset=UTF-8",
             //请求地址
-            url: "http://localhost:8080/material/" + material_type,
+            url: "http://wangbowen.cn/WX_GZH/material/" + material_type,
             //数据，json字符串
             data: JSON.stringify(list),
             dataType: "json",
@@ -275,7 +275,7 @@
         $.ajax({
             type: "POST",
             contentType: "application/json;charset=UTF-8",
-            url: "http://localhost:8080/rule/check",
+            url: "http://wangbowen.cn/WX_GZH/rule/check",
             data: JSON.stringify(list),
             dataType: "json",
             success: function (result) {
@@ -300,7 +300,7 @@
         $.ajax({
             type: "POST",
             contentType: "application/json;charset=UTF-8",
-            url: "http://localhost:8080/rule/add",
+            url: "http://wangbowen.cn/WX_GZH/rule/add",
             data: JSON.stringify(list),
             dataType: "json",
             success: function (result) {
@@ -321,7 +321,7 @@
         $.ajax({
             type: "POST",
             contentType: "application/json;charset=UTF-8",
-            url: "http://localhost:8080/rule/list",
+            url: "http://wangbowen.cn/WX_GZH/rule/list",
             data: JSON.stringify(list),
             dataType: "json",
             success: function (result) {
@@ -341,7 +341,7 @@
         $.ajax({
             type: "POST",
             contentType: "application/json;charset=UTF-8",
-            url: "http://localhost:8080/rule/delete/" + id,
+            url: "http://wangbowen.cn/WX_GZH/rule/delete/" + id,
             data: JSON.stringify(list),
             dataType: "json",
             success: function (result) {
@@ -385,7 +385,7 @@
         $.ajax({
             type: "POST",
             contentType: "application/json;charset=UTF-8",
-            url: "http://localhost:8080/subscribe",
+            url: "http://wangbowen.cn/WX_GZH/subscribe",
             dataType: "json",
             success: function (result) {
                 $("#replay_subscribe").val(result.content);
@@ -398,7 +398,7 @@
         $.ajax({
             type: "POST",
             contentType: "application/json;charset=UTF-8",
-            url: "http://localhost:8080/subscribe/" + $("#replay_subscribe").val(),
+            url: "http://wangbowen.cn/WX_GZH/subscribe/" + $("#replay_subscribe").val(),
             dataType: "json",
             success: function (result) {
                 if (result.status === "success") {

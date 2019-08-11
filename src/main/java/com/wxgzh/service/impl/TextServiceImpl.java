@@ -1,16 +1,12 @@
 package com.wxgzh.service.impl;
 
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONObject;
 import com.wxgzh.dao.TextDao;
 import com.wxgzh.domain.request.TextRequest;
 import com.wxgzh.domain.response.TextResponse;
 import com.wxgzh.service.TextService;
-import com.wxgzh.utils.HttpUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
 
 /**
  * TextMessageServiceImpl class

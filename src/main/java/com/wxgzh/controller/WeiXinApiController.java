@@ -1,21 +1,14 @@
 package com.wxgzh.controller;
 
-import com.sun.javaws.jnl.XMLUtils;
-import com.wxgzh.domain.common.ConfigInfo;
+
 import com.wxgzh.domain.request.*;
-import com.wxgzh.domain.response.BaseResponseMessage;
-import com.wxgzh.domain.response.TextResponse;
 import com.wxgzh.enums.MaterialEnum;
 import com.wxgzh.service.*;
-import com.wxgzh.utils.TokenUtil;
 import com.wxgzh.utils.SignUtil;
 import com.wxgzh.utils.XmlUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
