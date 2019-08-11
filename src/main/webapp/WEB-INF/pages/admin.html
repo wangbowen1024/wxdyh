@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="http://localhost:8080/css/reset.css">
     <link rel="stylesheet" type="text/css" href="http://localhost:8080/css/default.css">
     <link rel="stylesheet" href="http://localhost:8080/css/style.css">
+    <link rel="stylesheet" href="http://localhost:8080/css/alter.css">
     <script src="http://localhost:8080/js/modernizr.js"></script>
     <!--[if IE]>
     <script src="http://libs.baidu.com/html5shiv/3.7/html5shiv.min.js"></script>
@@ -37,12 +38,12 @@
                 <a href="#">消息管理</a>
                 <ul>
                     <li onclick="get_rule_list()"><a href="#">规则列表</a></li>
-                    <li><a href="#">添加规则</a></li>
+                    <li onclick="tab_view('div2');"><a href="#">添加规则</a></li>
                 </ul>
             </li>
             <li class="has-children active bookmarks">
                 <a href="#">素材管理</a>
-                <ul>
+                <ul onclick="tab_view('div3')">
                     <li onclick="get_material_list('news')"><a href="#" id="mews_list">图文素材</a></li>
                     <li onclick="get_material_list('voice')"><a href="#" id="voice_list">语音素材</a></li>
                     <li onclick="get_material_list('video')"><a href="#" id="video_list">视频素材</a></li>
@@ -50,16 +51,16 @@
                 </ul>
             </li>
             <li class="has-children active users">
-                <a href="#">成员管理</a>
+                <a href="#">公众号管理</a>
                 <ul>
-                    <li><a href="#">用户关注列表（未开发）</a></li>
+                    <li onclick="get_replay_subscribe()"><a href="#">基本配置</a></li>
                     <li><a href="#">管理员列表（未开发）</a></li>
                 </ul>
             </li>
         </ul>
     </nav>
-    <!-- 自动回复 -->
-    <div class="content-wrapper">
+    <!-- 规则列表 -->
+    <div id="div1" class="content-wrapper">
         <div class="my_title">规则列表</div>
         <div>
             <small style="color: red;font-size: small">注意事项：用户发送文字或语音信息时会按顺序从上往下匹配所有规则，遇到成功匹配直接返回，后续不再匹配</small>
@@ -87,7 +88,7 @@
         </div>
     </div>
     <!-- 添加规则 -->
-    <div class="content-wrapper">
+    <div id="div2" class="content-wrapper" style="display: none">
         <div class="my_title">添加规则</div>
         <div>
             <div class="form-inline">
@@ -152,8 +153,11 @@
         </div>
     </div>
     <!-- 素材列表 -->
-    <div class="content-wrapper">
-        <div class="my_title" id="material_title">素材</div>
+    <div id="div3" class="content-wrapper" style="display: none">
+        <div class="my_title">
+            <div class="" id="material_title" style="display: inline-block">素材</div>
+            <button type="button" class="btn btn-primary" style="margin-left: 10px;" onclick="fresh()">刷新</button>
+        </div>
         <div>
             <table class="table table-hover">
                 <thead>
@@ -169,6 +173,17 @@
             </table>
         </div>
     </div>
+    <!-- 公众号管理 -->
+    <div id="div4" class="content-wrapper">
+        <div class="my_title">回复订阅信息</div>
+        <div>
+            <label style="margin:5px 30px 10px 0">用户订阅时自动回复的消息：</label>
+            <textarea class="form-control col-md-5" rows="10" placeholder="用户订阅时自动回复的消息内容" id="replay_subscribe"></textarea>
+            <div style="margin: 20px auto">
+                <button type="button" class="btn btn-primary col-md-2" onclick="change_replay_subscribe()">更新回复内容</button>
+            </div>
+        </div>
+    </div>
 </main>
 <script src='https://libs.baidu.com/jquery/2.1.1/jquery.min.js'></script>
 <!--<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>-->
@@ -176,8 +191,28 @@
 <script src="http://localhost:8080/js/main.js"></script>
 <script src="https://cdn.bootcss.com/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://cdn.bootcss.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script src="http://localhost:8080/js/alter.js"></script>
 <script>
-    var token = "123456789";
+    var fresh_type = "image";
+
+    /* 刷新素材 */
+    function fresh() {
+        $.ajax({
+            type: "POST",
+            contentType: "application/json;charset=UTF-8",
+            url: "http://localhost:8080/material/fresh/" + fresh_type,
+            dataType: "json",
+            success: function (result) {
+                get_material_list(fresh_type);
+                success_prompt("刷 新 成 功", 1000);
+            },
+            error: function (e) {
+                get_material_list(fresh_type);
+                success_prompt("刷 新 成 功", 1000);
+            }
+        });
+    }
+
     /* 获取素材列表 */
     function get_material_list(material_type) {
         //请求参数
@@ -198,12 +233,16 @@
                 if (result.errcode == null) {
                     if (material_type === "image") {
                         $("#material_title").html("图片素材");
+                        fresh_type = "image";
                     }else if (material_type === "news") {
                         $("#material_title").html("图文素材");
+                        fresh_type = "news";
                     }else if (material_type === "voice") {
                         $("#material_title").html("语音素材");
+                        fresh_type = "voice";
                     }else if (material_type === "video") {
                         $("#material_title").html("视频素材");
+                        fresh_type = "video";
                     }
                     var str = "";
                     for (var i = 0; i < result.length; i++) {
@@ -266,10 +305,11 @@
             dataType: "json",
             success: function (result) {
                 if (result.status === "success") {
-                    alert("添加成功!");
                     get_rule_list();
+                    success_prompt("添 加 成 功", 1000);
+                    tab_view("div1");
                 } else {
-                    alert("添加失败!")
+                    fail_prompt("添 加 失 败", 1000);
                 }
             }
         });
@@ -292,6 +332,7 @@
                 $("#rule_table_body").html(str);
             }
         });
+        tab_view('div1');
     }
 
     /* 删除规则 */
@@ -305,10 +346,65 @@
             dataType: "json",
             success: function (result) {
                 if (result.status === "success") {
-                    alert("删除成功!");
+                    success_prompt("删 除 成 功", 1000);
                     get_rule_list();
                 } else {
-                    alert("删除失败!")
+                    fail_prompt("删 除 失 败", 1000);
+                }
+            }
+        });
+    }
+
+    /* 切换视图 */
+    function tab_view(id) {
+        if (id === "div1") {
+            $("#div1").css('display','block');
+        } else {
+            $("#div1").css('display','none');
+        }
+        if (id === "div2") {
+            $("#div2").css('display','block');
+        } else {
+            $("#div2").css('display','none');
+        }
+        if (id === "div3") {
+            $("#div3").css('display','block');
+        } else {
+            $("#div3").css('display','none');
+        }
+        if (id === "div4") {
+            $("#div4").css('display','block');
+        } else {
+            $("#div4").css('display','none');
+        }
+    }
+
+    /* 获取自动回复订阅消息内容 */
+    function get_replay_subscribe() {
+        tab_view('div4');
+        $.ajax({
+            type: "POST",
+            contentType: "application/json;charset=UTF-8",
+            url: "http://localhost:8080/subscribe",
+            dataType: "json",
+            success: function (result) {
+                $("#replay_subscribe").val(result.content);
+            }
+        });
+    }
+
+    /* 修改自动回复订阅消息内容 */
+    function change_replay_subscribe() {
+        $.ajax({
+            type: "POST",
+            contentType: "application/json;charset=UTF-8",
+            url: "http://localhost:8080/subscribe/" + $("#replay_subscribe").val(),
+            dataType: "json",
+            success: function (result) {
+                if (result.status === "success") {
+                    success_prompt("修 改 成 功", 1000);
+                } else {
+                    fail_prompt("修 改 失 败！", 1000);
                 }
             }
         });

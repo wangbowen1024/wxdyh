@@ -1,11 +1,10 @@
 package com.wxgzh.controller;
 
+import com.sun.javaws.jnl.XMLUtils;
 import com.wxgzh.domain.common.ConfigInfo;
-import com.wxgzh.domain.request.ImageRequest;
-import com.wxgzh.domain.request.TextRequest;
-import com.wxgzh.domain.request.VideoRequest;
-import com.wxgzh.domain.request.VoiceRequest;
+import com.wxgzh.domain.request.*;
 import com.wxgzh.domain.response.BaseResponseMessage;
+import com.wxgzh.domain.response.TextResponse;
 import com.wxgzh.enums.MaterialEnum;
 import com.wxgzh.service.*;
 import com.wxgzh.utils.TokenUtil;
@@ -40,8 +39,7 @@ public class WeiXinApiController {
     private VoiceService voiceService;
     @Autowired
     private VideoService videoService;
-    @Autowired
-    private NewsServce newsServce;
+
 
     /**
      * 只有返回成功echostr，微信才会认可这个接口
@@ -86,12 +84,12 @@ public class WeiXinApiController {
             if (MaterialEnum.TEXT.getType().equals(msgType)) {
                 // 接收文本消息
                 TextRequest message = (TextRequest) XmlUtil.mapToBean(params, TextRequest.class);
-                textService.saveText(message);
+                /*textService.saveText(message);*/
                 content = message.getContent();
             } else {
                 // 接收语音消息
                 VoiceRequest message = (VoiceRequest) XmlUtil.mapToBean(params, VoiceRequest.class);
-                voiceService.saveVoice(message);
+                /*voiceService.saveVoice(message);*/
                 // 语音最后会带一个中文句号
                 String tmp = message.getRecognition();
                 content = tmp.substring(0, tmp.length() - 1);
@@ -103,11 +101,17 @@ public class WeiXinApiController {
         } else if (MaterialEnum.IMAGE.getType().equals(msgType)) {
             // 接收是图片消息
             ImageRequest message = (ImageRequest) XmlUtil.mapToBean(params, ImageRequest.class);
-            imageService.saveImage(message);
+            /*imageService.saveImage(message);*/
         } else if (MaterialEnum.VIDEO.getType().equals(msgType) || MaterialEnum.SHORT_VIDEO.getType().equals(msgType)) {
             // 接收视频（短视频）消息
             VideoRequest message = (VideoRequest) XmlUtil.mapToBean(params, VideoRequest.class);
-            videoService.saveVideo(message);
+            /*videoService.saveVideo(message);*/
+        } else if (MaterialEnum.EVENT.getType().equals(msgType)) {
+            // 接受事件消息
+            EventRequest message = (EventRequest) XmlUtil.mapToBean(params, EventRequest.class);
+            request.setAttribute("event", message.getEvent());
+            request.setAttribute("sender", fromUserName);
+            request.getRequestDispatcher("/event").forward(request, response);
         }
     }
 }

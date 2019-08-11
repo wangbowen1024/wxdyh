@@ -5,15 +5,15 @@ import com.alibaba.fastjson.JSONObject;
 import com.wxgzh.domain.common.ConfigInfo;
 import com.wxgzh.domain.common.Rule;
 import com.wxgzh.domain.material.Item;
+import com.wxgzh.domain.material.Video;
 import com.wxgzh.domain.response.BaseResponseMessage;
 import com.wxgzh.enums.MaterialEnum;
 import com.wxgzh.service.*;
 import com.wxgzh.utils.HttpUtil;
 import com.wxgzh.utils.RegexpUtil;
-import com.wxgzh.utils.TokenUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 
@@ -45,8 +45,20 @@ public class MessageController {
     private NewsServce newsServce;
     @Autowired
     private RuleService ruleService;
-
+    @Autowired
+    private EventService eventService;
+    /**
+     * 规则列表
+     */
     public static List<Rule> ruleList;
+    /**
+     * 自动回复关注者消息内容
+     */
+    public static String autoReplaySubscribe;
+    /**
+     * 判断是否是首位用户的标志
+     */
+    public static boolean isFirstUser = true;
 
     /**
      * 用于处理用户的文字消息
@@ -55,7 +67,7 @@ public class MessageController {
      * @param response
      * @return
      */
-    @RequestMapping("/message")
+    @PostMapping("/message")
     @ResponseBody
     public Object processMessage(HttpServletRequest request, HttpServletResponse response) throws Exception {
         // 用户发送的文字消息内容
@@ -69,39 +81,79 @@ public class MessageController {
         for (Rule rule : ruleList) {
             JSONObject matching = RegexpUtil.matching(message, rule.getContent(), rule.getType());
             if ("success".equals(matching.getString("status"))) {
-                return replayMessage(parseRuleToResponse(rule), sender);
+                return replayMessage(MaterialEnum.valueOf(rule.getReplayType()), parseRuleToResponse(rule), sender);
             }
         }
-        /***************************自定义匹配规则以及对应的业务,注意匹配顺序和逻辑关系********************************/
+        /********  自定义匹配规则以及对应的业务,注意匹配顺序和逻辑关系(或者自行转发到其他Controller进行处理)  *********/
 
-        /**
-         * 获取TOKEN
-         */
-        if (message.contains("获取令牌")) {
-            return replayMessage(textService.returnText(TokenUtil.getAccessToken()), sender);
-        }
+        // 机器人回复
         if (message.length() > 0) {
-            // 机器人回复
-            return replayMessage(textService.returnText(getRobotReply(message)), sender);
+            return replayMessage(MaterialEnum.TEXT, getRobotReply(message), sender);
         }
+
         /** ----------------------------------      E      N      D      -------------------------------------------- */
         return "success";
     }
 
     /**
-     * 处理返回结果
-     * @param obj Response响应消息类
-     * @param toUserName 接收者ID
+     * 事件消息处理
+     * @param request
+     * @param response
      * @return
      */
-    private Object replayMessage(BaseResponseMessage obj, String toUserName) {
-        if (obj != null) {
-            // 配置基本回复属性
-            obj.setToUserName(toUserName);
-            obj.setFromUserName(ConfigInfo.WXGZH_ID);
-            obj.setCreateTime(String.valueOf(System.currentTimeMillis()));
+    @PostMapping("/event")
+    @ResponseBody
+    public Object processEvent(HttpServletRequest request, HttpServletResponse response) {
+        // 事件内容
+        String event = (String) request.getAttribute("event");
+        // 发送者用户ID
+        String sender = (String) request.getAttribute("sender");
+        // 订阅消息
+        if ("subscribe".equals(event)) {
+            eventService.subscribe(sender);
+            if (autoReplaySubscribe == null) {
+                autoReplaySubscribe = eventService.findSubscribeReplay();
+            }
+            if (MessageController.isFirstUser) {
+                MessageController.isFirstUser = false;
+                return replayMessage(MaterialEnum.TEXT, "欢迎关注公众号！o(*￣▽￣*)ブ您是首位关注公共号的用户，" +
+                        "自动成为管理员。赶快登陆公众号后台管理进行操作把", sender);
+            }
+            return replayMessage(MaterialEnum.TEXT, autoReplaySubscribe, sender);
+        } else if ("unsubscribe".equals(event)) {
+            // 取消订阅消息
+            eventService.unsubscribe(sender);
         }
-        return obj;
+        return "success";
+    }
+
+    /**
+     * 回复消息
+     * @param type 回复类型
+     * @param obj 回复的内容（文字、语音、图片传String,视频传Video,图文传Item）
+     * @param toUserName 发送者ID
+     * @return
+     */
+    private BaseResponseMessage replayMessage(MaterialEnum type, Object obj, String toUserName) {
+        BaseResponseMessage responseMessage = null;
+        if (MaterialEnum.TEXT.equals(type)) {
+            responseMessage = textService.returnText((String) obj);
+        } else if (MaterialEnum.IMAGE.equals(type)) {
+            responseMessage = imageService.returnImage((String) obj);
+        } else if (MaterialEnum.VIDEO.equals(type)) {
+            responseMessage = videoService.returnVideo((Video) obj);
+        } else if (MaterialEnum.VOICE.equals(type)) {
+            responseMessage = voiceService.returnVoice((String) obj);
+        } else if (MaterialEnum.NEWS.equals(type)) {
+            responseMessage = newsServce.returnNews((Item) obj);
+        }
+        // 配置基本回复属性
+        if (responseMessage != null) {
+            responseMessage.setToUserName(toUserName);
+            responseMessage.setFromUserName(ConfigInfo.WXGZH_ID);
+            responseMessage.setCreateTime(String.valueOf(System.currentTimeMillis()));
+        }
+        return responseMessage;
     }
 
     /**
@@ -132,7 +184,7 @@ public class MessageController {
         return textService.returnText("服务器繁忙");
     }
 
-
+    /** ***************************************  以下添加自定义功能函数  ******************************************** */
 
     /**
      * 获取机器人回复信息

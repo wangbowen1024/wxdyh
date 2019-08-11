@@ -31,7 +31,11 @@ public enum MaterialEnum {
     /**
      * 图文
      */
-    NEWS("news", 5);
+    NEWS("news", 5),
+    /**
+     * 事件
+     */
+    EVENT("event", 6);
 
     private String materialType;
     private Integer id;
