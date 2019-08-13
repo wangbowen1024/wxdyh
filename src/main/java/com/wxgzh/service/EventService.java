@@ -1,5 +1,9 @@
 package com.wxgzh.service;
 
+import com.wxgzh.domain.common.User;
+
+import java.util.List;
+
 /**
  * EventService class
  *
@@ -30,4 +34,10 @@ public interface EventService {
      * @param content
      */
     int updateSubscribeReplay(String content);
+
+    /**
+     * 查找所有管理员
+     * @return
+     */
+    List<User> findAllAdmin();
 }

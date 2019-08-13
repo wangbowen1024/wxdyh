@@ -2,10 +2,13 @@ package com.wxgzh.service.impl;
 
 import com.wxgzh.controller.MessageController;
 import com.wxgzh.dao.EventDao;
+import com.wxgzh.domain.common.ConfigInfo;
 import com.wxgzh.domain.common.User;
 import com.wxgzh.service.EventService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * EventServiceImpl class
@@ -38,6 +41,7 @@ public class EventServiceImpl implements EventService {
             }
             if (MessageController.isFirstUser) {
                 u.setAuthority("admin");
+                ConfigInfo.ADMIN_SET.add(openId);
             } else {
                 u.setAuthority("user");
             }
@@ -60,5 +64,10 @@ public class EventServiceImpl implements EventService {
     @Override
     public int updateSubscribeReplay(String content) {
         return eventDao.updateSubscribeMessage(content);
+    }
+
+    @Override
+    public List<User> findAllAdmin() {
+        return eventDao.findAllAdmin();
     }
 }

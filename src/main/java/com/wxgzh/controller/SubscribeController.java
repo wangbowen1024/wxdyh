@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
  * @date 2019/08/11
  */
 @Controller
+@RequestMapping("/subscribe")
 public class SubscribeController {
     @Autowired
     private EventService eventService;
@@ -24,7 +26,7 @@ public class SubscribeController {
      * 返回当前订阅消息
      * @return
      */
-    @PostMapping("/subscribe")
+    @PostMapping("/content")
     @ResponseBody
     public Object getSubscribeReplay() {
         JSONObject jsonObject = new JSONObject();
@@ -37,7 +39,7 @@ public class SubscribeController {
      * @param content
      * @return
      */
-    @PostMapping("/subscribe/{content}")
+    @PostMapping("/{content}")
     @ResponseBody
     public Object getSubscribeReplay(@PathVariable String content) {
         JSONObject jsonObject = new JSONObject();

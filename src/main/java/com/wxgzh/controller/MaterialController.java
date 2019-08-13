@@ -33,10 +33,10 @@ public class MaterialController {
     /**
      * 设置初始化刷新判断标记
      */
-    private boolean isInitNewsMap = false;
-    private boolean isInitImageMap = false;
-    private boolean isInitVoiceMap = false;
-    private boolean isInitVideoMap = false;
+    public static boolean isInitNewsMap = false;
+    public static boolean isInitImageMap = false;
+    public static boolean isInitVoiceMap = false;
+    public static boolean isInitVideoMap = false;
 
     @Autowired
     private MaterialService materialService;
@@ -52,25 +52,25 @@ public class MaterialController {
     public Object getMaterial(@PathVariable String type) throws Exception {
         if (MaterialEnum.NEWS.getType().equals(type)) {
             if (!isInitNewsMap) {
-                freshMaterial("news");
+                refreshMaterial("news");
                 isInitNewsMap = true;
             }
             return newsMap.values();
         } else if (MaterialEnum.IMAGE.getType().equals(type)) {
             if (!isInitImageMap) {
-                freshMaterial("image");
+                refreshMaterial("image");
                 isInitImageMap = true;
             }
             return imageMap.values();
         } else if (MaterialEnum.VIDEO.getType().equals(type)) {
             if (!isInitVideoMap) {
-                freshMaterial("video");
+                refreshMaterial("video");
                 isInitVideoMap = true;
             }
             return videoMap.values();
         } else if (MaterialEnum.VOICE.getType().equals(type)) {
             if (!isInitVoiceMap) {
-                freshMaterial("voice");
+                refreshMaterial("voice");
                 isInitVoiceMap = true;
             }
             return voiceMap.values();
@@ -81,15 +81,15 @@ public class MaterialController {
 
     @PostMapping("/fresh/{type}")
     @ResponseBody
-    public Object freshMaterial(@PathVariable String type) throws Exception {
+    public Object refreshMaterial(@PathVariable String type) throws Exception {
         if (MaterialEnum.NEWS.getType().equals(type)) {
-            freshMap(newsMap, "news");
+            refreshMap(newsMap, "news");
         } else if (MaterialEnum.IMAGE.getType().equals(type)) {
-            freshMap(imageMap, "image");
+            refreshMap(imageMap, "image");
         } else if (MaterialEnum.VOICE.getType().equals(type)) {
-            freshMap(voiceMap, "voice");
+            refreshMap(voiceMap, "voice");
         } else if (MaterialEnum.VIDEO.getType().equals(type)) {
-            freshMap(videoMap, "video");
+            refreshMap(videoMap, "video");
         }
         return new JSONObject().put("status", "success");
     }
@@ -100,7 +100,7 @@ public class MaterialController {
      * @param type
      * @throws Exception
      */
-    private void freshMap(Map<String, JSONObject> map, String type) throws Exception {
+    private void refreshMap(Map<String, JSONObject> map, String type) throws Exception {
         map.clear();
         JSONArray materials = materialService.getMaterialOfType(TokenUtil.getAccessToken(), type);
         for (int i = 0; i < materials.size(); i++) {

@@ -1,10 +1,85 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>登陆</title>
+    <link rel="stylesheet" type="text/css" href="http://localhost:8080/css/style_login.css" media="all" />
+    <link rel="stylesheet" href="http://localhost:8080/css/alter.css">
+    <script src='https://libs.baidu.com/jquery/2.1.1/jquery.min.js'></script>
 </head>
 <body>
-<a href="http://wangbowen.cn/WX_GZH/login">LOGIN</a>
+<div class="a">
+</div>
+<div class="v">
+    <h2>Welcome<span><i>·</i><i>·</i><i class="i">·</i></span></h2>
+    <div class="b" id="b">
+        <input id="psw" type="password" class="input" placeholder="Login Token" />
+        <div class="submit" onclick="login()">Login</div>
+    </div>
+</div>
+<script src="http://localhost:8080/js/jquery.js"></script>
+<script src="http://localhost:8080/js/jquery.cookie.js" type="text/javascript"></script>
+<script src="http://localhost:8080/js/alter.js"></script>
+<script>
+    var server_address = "http://localhost:8080";
+    // 检查是否在登陆有效期内
+    function check() {
+        if ($.cookie("token")) {
+            $.ajax({
+                headers: {
+                    "token": $.cookie("token")
+                },
+                contentType: "application/json;charset=UTF-8",
+                type: "POST",
+                url: server_address + "/login/check/token",
+                dataType: "json",
+                success: function (result) {
+                    if (result.status === "success") {
+                        console.log("OK");
+                        window.location.href = server_address + "/admin.html";
+                    } else {
+                        console.log("FAIL");
+                        $.cookie("token", "", {expires: 0});
+                    }
+                }
+            });
+        }
+    }
+    // 登陆
+    function login() {
+        var token = $("#psw").val();
+        if (token === "") {
+            fail_prompt("令牌不能为空", 1500);
+            setTimeout(function () {
+                location.reload();
+            }, 1500);
+        } else {
+            $.ajax({
+                type: "POST",
+                contentType: "application/json;charset=UTF-8",
+                url: server_address + "/login/" + token,
+                dataType: "json",
+                success: function (result) {
+                    if (result.status === "success") {
+                        var date = new Date();
+                        var minutes = 30;
+                        date.setTime(date.getTime() + (minutes * 60 * 1000));
+                        $.cookie("token", result.token, {expires: date});
+                        check();
+                    } else {
+                        fail_prompt("令牌验证失败", 1500);
+                        setTimeout(function () {
+                            location.reload();
+                        }, 1500);
+                    }
+                }
+            });
+        }
+    }
+
+    $(function () {
+        check();
+    });
+</script>
 </body>
 </html>

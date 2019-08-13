@@ -1,0 +1,1 @@
+$(document).ready(function(){$(".submit").click(function(){$(".b").css("transform","translate(0px,-260px)");$(".b").css("opacity","0");$("h2").css("transform","translate(0px,130px)");$("h2 span").css("opacity","1");$("h2 span i").css("animation-play-state","running");});});

@@ -1,9 +1,12 @@
 package com.wxgzh.controller;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.wxgzh.domain.common.ConfigInfo;
 import com.wxgzh.domain.common.Rule;
+import com.wxgzh.domain.common.Timer;
+import com.wxgzh.domain.common.User;
 import com.wxgzh.domain.material.Item;
 import com.wxgzh.domain.material.Video;
 import com.wxgzh.domain.response.BaseResponseMessage;
@@ -11,6 +14,7 @@ import com.wxgzh.enums.MaterialEnum;
 import com.wxgzh.service.*;
 import com.wxgzh.utils.HttpUtil;
 import com.wxgzh.utils.RegexpUtil;
+import com.wxgzh.utils.TokenUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -21,6 +25,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -47,6 +52,9 @@ public class MessageController {
     private RuleService ruleService;
     @Autowired
     private EventService eventService;
+    @Autowired
+    private MaterialService materialService;
+
     /**
      * 规则列表
      */
@@ -81,10 +89,16 @@ public class MessageController {
         for (Rule rule : ruleList) {
             JSONObject matching = RegexpUtil.matching(message, rule.getContent(), rule.getType());
             if ("success".equals(matching.getString("status"))) {
-                return replayMessage(MaterialEnum.valueOf(rule.getReplayType()), parseRuleToResponse(rule), sender);
+                return replayMessage(MaterialEnum.valueOf(rule.getReplayType().toUpperCase()),
+                        parseRuleToResponseNeed(rule), sender);
             }
         }
         /********  自定义匹配规则以及对应的业务,注意匹配顺序和逻辑关系(或者自行转发到其他Controller进行处理)  *********/
+
+        // 获取token
+        if ("token".equals(message)) {
+            return replayMessage(MaterialEnum.TEXT, TokenUtil.getAccessToken(), sender);
+        }
 
         // 机器人回复
         if (message.length() > 0) {
@@ -92,6 +106,27 @@ public class MessageController {
         }
 
         /** ----------------------------------      E      N      D      -------------------------------------------- */
+        return "success";
+    }
+
+    /**
+     * 获取登陆令牌
+     * @param request
+     * @return
+     */
+    @PostMapping("/loginToken")
+    @ResponseBody
+    public Object getLoginToken(HttpServletRequest request) {
+        if (ConfigInfo.ADMIN_SET.isEmpty()) {
+            List<User> list = eventService.findAllAdmin();
+            for (User user : list) {
+                ConfigInfo.ADMIN_SET.add(user.getOpenId());
+            }
+        }
+        String sender = (String) request.getAttribute("sender");
+        if (ConfigInfo.ADMIN_SET.contains(sender)) {
+            return replayMessage(MaterialEnum.TEXT, Timer.loginToken, sender);
+        }
         return "success";
     }
 
@@ -117,7 +152,7 @@ public class MessageController {
             if (MessageController.isFirstUser) {
                 MessageController.isFirstUser = false;
                 return replayMessage(MaterialEnum.TEXT, "欢迎关注公众号！o(*￣▽￣*)ブ您是首位关注公共号的用户，" +
-                        "自动成为管理员。赶快登陆公众号后台管理进行操作把", sender);
+                        "自动成为管理员。赶快登陆公众号后台管理进行操作把。发送【登陆】获取令牌，每60秒更新一次", sender);
             }
             return replayMessage(MaterialEnum.TEXT, autoReplaySubscribe, sender);
         } else if ("unsubscribe".equals(event)) {
@@ -161,27 +196,48 @@ public class MessageController {
      * @param rule
      * @return
      */
-    private BaseResponseMessage parseRuleToResponse(Rule rule) {
+    private Object parseRuleToResponseNeed(Rule rule) throws Exception {
         if (MaterialEnum.TEXT.getType().equals(rule.getReplayType())) {
             // 文字
-            return textService.returnText(rule.getReplayContent());
+            return rule.getReplayContent();
         }else if (MaterialEnum.VOICE.getType().equals(rule.getReplayType())) {
             // 语音
-            return voiceService.returnVoice(rule.getReplayContent());
+            return rule.getReplayContent();
         }else if (MaterialEnum.IMAGE.getType().equals(rule.getReplayType())) {
             // 图片
-            return imageService.returnImage(rule.getReplayContent());
+            return rule.getReplayContent();
         }else if (MaterialEnum.VIDEO.getType().equals(rule.getReplayType())) {
             // 视频
+            if (MaterialController.videoMap.isEmpty()) {
+                initMap(MaterialController.videoMap, "video");
+                MaterialController.isInitVideoMap = true;
+            }
             JSONObject jsonObject = MaterialController.videoMap.get(rule.getReplayContent());
-            return videoService.returnVideo(rule.getReplayContent(), jsonObject.getString("name"),"");
+            return new Video(rule.getReplayContent(), jsonObject.getString("name"),"");
         } else if (MaterialEnum.NEWS.getType().equals(rule.getReplayType())) {
             // 图文
+            if (MaterialController.newsMap.isEmpty()) {
+                initMap(MaterialController.newsMap, "news");
+                MaterialController.isInitNewsMap = true;
+            }
             JSONObject jsonObject = MaterialController.newsMap.get(rule.getReplayContent());
-            return newsServce.returnNews(jsonObject.getString("title"), jsonObject.getString("digest"),
+            return new Item(jsonObject.getString("title"), jsonObject.getString("digest"),
                     jsonObject.getString("thumb_url"), jsonObject.getString("url"));
         }
-        return textService.returnText("服务器繁忙");
+        return "服务器繁忙";
+    }
+
+    private void initMap(Map<String, JSONObject> map, String type) throws Exception {
+        map.clear();
+        JSONArray materials = materialService.getMaterialOfType(TokenUtil.getAccessToken(), type);
+        for (int i = 0; i < materials.size(); i++) {
+            JSONObject jsonObject = materials.getJSONObject(i);
+            if (MaterialEnum.NEWS.getType().equals(type)) {
+                map.put(jsonObject.getString("thumb_media_id"), jsonObject);
+            } else {
+                map.put(jsonObject.getString("media_id"), jsonObject);
+            }
+        }
     }
 
     /** ***************************************  以下添加自定义功能函数  ******************************************** */

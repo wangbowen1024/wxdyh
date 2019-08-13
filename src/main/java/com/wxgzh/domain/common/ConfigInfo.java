@@ -1,6 +1,9 @@
 package com.wxgzh.domain.common;
 
+import com.wxgzh.controller.MaterialController;
+import com.wxgzh.dao.EventDao;
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -47,11 +50,6 @@ public class ConfigInfo {
      * 管理员列表
      */
     public static Set<String> ADMIN_SET = new HashSet<>();
-
-    /**
-     * 信息是否被更新了
-     */
-    public static boolean IS_UPDATE = false;
 
     static {
         Properties properties = new Properties();

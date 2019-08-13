@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-       xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:context="http://www.springframework.org/schema/context"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="
         http://www.springframework.org/schema/beans
@@ -23,9 +24,6 @@
     </bean>
 
     <!-- 7、过滤静态资源 -->
-    <!--<mvc:resources mapping="/css/**" location="/css/"/>
-    <mvc:resources mapping="/js/**" location="/js/"/>
-    <mvc:resources mapping="/img/**" location="/img/"/>-->
     <mvc:default-servlet-handler/>
 
     <!-- 8、启用SpringMVC注解支持 -->
@@ -42,5 +40,17 @@
             </bean>
         </mvc:message-converters>
     </mvc:annotation-driven>
+
+
+    <!--配置拦截器 拦截除了exceptUrls内的所有请求-->
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/material/**"/>
+            <mvc:mapping path="/message/**"/>
+            <mvc:mapping path="/rule/**"/>
+            <mvc:mapping path="/subscribe/**"/>
+            <bean class="com.wxgzh.domain.common.UrlInterceptor"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
 
 </beans>

@@ -4,6 +4,7 @@
        xmlns:context="http://www.springframework.org/schema/context"
        xmlns:aop="http://www.springframework.org/schema/aop"
        xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:task="http://www.springframework.org/schema/task"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
 	http://www.springframework.org/schema/beans/spring-beans.xsd
 	http://www.springframework.org/schema/context
@@ -11,7 +12,9 @@
 	http://www.springframework.org/schema/aop
 	http://www.springframework.org/schema/aop/spring-aop.xsd
 	http://www.springframework.org/schema/tx
-	http://www.springframework.org/schema/tx/spring-tx.xsd">
+	http://www.springframework.org/schema/tx/spring-tx.xsd
+    http://www.springframework.org/schema/task
+    http://www.springframework.org/schema/task/spring-task-3.0.xsd">
 
     <!-- 2、开启注解的扫描，希望处理service和dao，controller不需要Spring框架去处理 -->
     <context:component-scan base-package="com.wxgzh">
@@ -58,5 +61,8 @@
     <aop:config>
         <aop:advisor advice-ref="txAdvice" pointcut="execution(* com.wxgzh.service.impl.*ServiceImpl.*(..))"/>
     </aop:config>
+
+    <!-- 打开定时器开关 -->
+    <task:annotation-driven/>
 
 </beans>

@@ -6,6 +6,8 @@ import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 
 /**
  * EventDao class
@@ -60,6 +62,18 @@ public interface EventDao {
     @Update("update subscribeMessage set content = #{content} where id = 1")
     int updateSubscribeMessage(String content);
 
+    /**
+     * 统计用户数量
+     *
+     * @return
+     */
     @Select("select count(*) from user")
     int totalUser();
+
+    /**
+     * 查询管理员
+     * @return
+     */
+    @Select("select * from user where authority = 'admin'")
+    List<User> findAllAdmin();
 }

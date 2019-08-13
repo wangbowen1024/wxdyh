@@ -1,6 +1,7 @@
 package com.wxgzh.controller;
 
 
+import com.wxgzh.domain.common.ConfigInfo;
 import com.wxgzh.domain.request.*;
 import com.wxgzh.enums.MaterialEnum;
 import com.wxgzh.service.*;
@@ -66,6 +67,7 @@ public class WeiXinApiController {
     @RequestMapping(value = "/api", method = RequestMethod.POST, produces = {"application/xml;charset=UTF-8"})
     public void receiveMessage(@RequestBody String xml, HttpServletRequest request,
                                  HttpServletResponse response) throws Exception {
+        request.setAttribute("forwardCheck", ConfigInfo.TOKEN);
         Map<String, Object> params = XmlUtil.xmlStrToMap(xml);
         // 获取发送者ID
         String fromUserName = (String) params.get("FromUserName");
@@ -86,6 +88,11 @@ public class WeiXinApiController {
                 // 语音最后会带一个中文句号
                 String tmp = message.getRecognition();
                 content = tmp.substring(0, tmp.length() - 1);
+            }
+            // 登陆请求转发到登陆控制器
+            if ("登陆".equals(content)) {
+                request.setAttribute("sender", fromUserName);
+                request.getRequestDispatcher("/loginToken").forward(request, response);
             }
             // 转发请求给消息控制器
             request.setAttribute("message", content);

@@ -10,7 +10,6 @@
     <link rel="stylesheet" type="text/css" href="http://localhost:8080/css/default.css">
     <link rel="stylesheet" href="http://localhost:8080/css/style.css">
     <link rel="stylesheet" href="http://localhost:8080/css/alter.css">
-    <script src="http://localhost:8080/js/modernizr.js"></script>
     <!--[if IE]>
     <script src="http://libs.baidu.com/html5shiv/3.7/html5shiv.min.js"></script>
     <![endif]-->
@@ -186,27 +185,50 @@
     </div>
 </main>
 <script src='https://libs.baidu.com/jquery/2.1.1/jquery.min.js'></script>
-<!--<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>-->
-<script src="http://localhost:8080/js/jquery.menu-aim.js"></script>
-<script src="http://localhost:8080/js/main.js"></script>
 <script src="https://cdn.bootcss.com/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://cdn.bootcss.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script src="http://localhost:8080/js/modernizr.js"></script>
+<script src="http://localhost:8080/js/jquery.menu-aim.js"></script>
+<script src="http://localhost:8080/js/main.js"></script>
 <script src="http://localhost:8080/js/alter.js"></script>
 <script>
+    var server_address = "http://localhost:8080";
     var fresh_type = "image";
+    /* 获取cookie */
+    function getCookie(cname) {
+        var name = cname + "=";
+        var ca = document.cookie.split(';');
+        for(var i=0; i<ca.length; i++)
+        {
+            var c = ca[i].trim();
+            if (c.indexOf(name)===0) return c.substring(name.length,c.length);
+        }
+        return "";
+    }
+
+    function redirect(flag){
+        if (flag === "true") {
+            window.location.href = server_address + "/index.html";
+        }
+    }
 
     /* 刷新素材 */
     function fresh() {
         $.ajax({
+            headers: {
+                "token": getCookie("token")
+            },
             type: "POST",
             contentType: "application/json;charset=UTF-8",
-            url: "http://localhost:8080/material/fresh/" + fresh_type,
+            url: server_address + "/material/fresh/" + fresh_type,
             dataType: "json",
             success: function (result) {
+                redirect(result.redirect);
                 get_material_list(fresh_type);
                 success_prompt("刷 新 成 功", 1000);
             },
             error: function (e) {
+                redirect(result.redirect);
                 get_material_list(fresh_type);
                 success_prompt("刷 新 成 功", 1000);
             }
@@ -218,18 +240,21 @@
         //请求参数
         var list = {};
         $.ajax({
+            headers: {
+                "token": getCookie("token")
+            },
             //请求方式
             type: "POST",
             //请求的媒体类型
             contentType: "application/json;charset=UTF-8",
             //请求地址
-            url: "http://localhost:8080/material/" + material_type,
+            url: server_address + "/material/" + material_type,
             //数据，json字符串
             data: JSON.stringify(list),
             dataType: "json",
             //请求成功
             success: function (result) {
-                console.log(result);
+                redirect(result.redirect);
                 if (result.errcode == null) {
                     if (material_type === "image") {
                         $("#material_title").html("图片素材");
@@ -259,6 +284,7 @@
             },
             //请求失败，包含具体的错误信息
             error: function (e) {
+                redirect(e.redirect);
                 console.log(e.status);
                 console.log(e.responseText);
             }
@@ -273,12 +299,16 @@
             "text": $("#text").val()
         };
         $.ajax({
+            headers: {
+                "token": getCookie("token")
+            },
             type: "POST",
             contentType: "application/json;charset=UTF-8",
-            url: "http://localhost:8080/rule/check",
+            url: server_address + "/rule/check",
             data: JSON.stringify(list),
             dataType: "json",
             success: function (result) {
+                redirect(result.redirect);
                 if (result.status === "success") {
                     $("#reg_result").val("匹配【成 功】");
                 } else {
@@ -298,12 +328,16 @@
             "replayContent":$("#replay_context").val()
         };
         $.ajax({
+            headers: {
+                "token": getCookie("token")
+            },
             type: "POST",
             contentType: "application/json;charset=UTF-8",
-            url: "http://localhost:8080/rule/add",
+            url: server_address + "/rule/add",
             data: JSON.stringify(list),
             dataType: "json",
             success: function (result) {
+                redirect(result.redirect);
                 if (result.status === "success") {
                     get_rule_list();
                     success_prompt("添 加 成 功", 1000);
@@ -319,12 +353,16 @@
     function get_rule_list() {
         var list = {};
         $.ajax({
+            headers: {
+                "token": getCookie("token")
+            },
             type: "POST",
             contentType: "application/json;charset=UTF-8",
-            url: "http://localhost:8080/rule/list",
+            url: server_address + "/rule/list",
             data: JSON.stringify(list),
             dataType: "json",
             success: function (result) {
+                redirect(result.redirect);
                 var str = "";
                 for (var i = 0; i < result.length; i++) {
                     str += "<tr><th scope=\"row\">"+(i+1)+"</th><td>"+result[i].name+"</td><td>"+result[i].type+"</td><td>"+result[i].content+"</td><td>"+result[i].replayType+"</td><td><button type=\"button\" class=\"btn btn-danger\" onclick='delete_rule("+result[i].id+")'>删除</button></td></tr>";
@@ -339,12 +377,16 @@
     function delete_rule(id) {
         var list = {};
         $.ajax({
+            headers: {
+                "token": getCookie("token")
+            },
             type: "POST",
             contentType: "application/json;charset=UTF-8",
-            url: "http://localhost:8080/rule/delete/" + id,
+            url: server_address + "/rule/delete/" + id,
             data: JSON.stringify(list),
             dataType: "json",
             success: function (result) {
+                redirect(result.redirect);
                 if (result.status === "success") {
                     success_prompt("删 除 成 功", 1000);
                     get_rule_list();
@@ -383,11 +425,15 @@
     function get_replay_subscribe() {
         tab_view('div4');
         $.ajax({
+            headers: {
+                "token": getCookie("token")
+            },
             type: "POST",
             contentType: "application/json;charset=UTF-8",
-            url: "http://localhost:8080/subscribe/content",
+            url: server_address + "/subscribe/content",
             dataType: "json",
             success: function (result) {
+                redirect(result.redirect);
                 $("#replay_subscribe").val(result.content);
             }
         });
@@ -396,11 +442,15 @@
     /* 修改自动回复订阅消息内容 */
     function change_replay_subscribe() {
         $.ajax({
+            headers: {
+                "token": getCookie("token")
+            },
             type: "POST",
             contentType: "application/json;charset=UTF-8",
-            url: "http://localhost:8080/subscribe/" + $("#replay_subscribe").val(),
+            url: server_address + "/subscribe/" + $("#replay_subscribe").val(),
             dataType: "json",
             success: function (result) {
+                redirect(result.redirect);
                 if (result.status === "success") {
                     success_prompt("修 改 成 功", 1000);
                 } else {

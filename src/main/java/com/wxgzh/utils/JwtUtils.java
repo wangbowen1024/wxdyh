@@ -27,11 +27,9 @@ public class JwtUtils {
 
     /**
      * 生成签名
-     * @param username
-     * @param uid
      * @return
      */
-    public static String sign(String username, String uid) {
+    public static String sign() {
 
         try {
             // 过期时间
@@ -45,7 +43,6 @@ public class JwtUtils {
             // 附加信息，生成签名
             return JWT.create()
                     .withHeader(header)
-                    .withClaim("uid", uid)
                     .withExpiresAt(date)
                     .sign(algorithm);
         } catch (UnsupportedEncodingException e) {
@@ -67,20 +64,6 @@ public class JwtUtils {
             return true;
         } catch (Exception e) {
             return false;
-        }
-    }
-
-    /**
-     * 获取用户 ID
-     * @param token
-     * @return
-     */
-    public static String getUserid(String token) {
-        try {
-            DecodedJWT jwt = JWT.decode(token);
-            return jwt.getClaim("uid").asString();
-        } catch (JWTDecodeException e) {
-            return null;
         }
     }
 }
