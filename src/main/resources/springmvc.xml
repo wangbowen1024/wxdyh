@@ -13,7 +13,7 @@
 
 
     <!-- 5、扫描注解：仅Controller注解 -->
-    <context:component-scan base-package="com.wxgzh">
+    <context:component-scan base-package="com.wxdyh">
         <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
     </context:component-scan>
 
@@ -41,15 +41,14 @@
         </mvc:message-converters>
     </mvc:annotation-driven>
 
-
-    <!--配置拦截器 拦截除了exceptUrls内的所有请求-->
+    <!--配置拦截器-->
     <mvc:interceptors>
         <mvc:interceptor>
             <mvc:mapping path="/material/**"/>
             <mvc:mapping path="/message/**"/>
             <mvc:mapping path="/rule/**"/>
             <mvc:mapping path="/subscribe/**"/>
-            <bean class="com.wxgzh.domain.common.UrlInterceptor"/>
+            <bean class="com.wxdyh.domain.common.UrlInterceptor"/>
         </mvc:interceptor>
     </mvc:interceptors>
 
