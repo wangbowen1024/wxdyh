@@ -108,6 +108,7 @@ mvn clean package
 1. 管理员向公众号发送“登陆”二字，可以获取登陆令牌
 ![获取登陆令牌](http://wangbowen.cn/image/wxdyh/p3.jpg?1)
 2. 打开浏览器访问登陆地址，输入令牌登陆系统（30分钟内自动登陆，不用再次输入令牌。如果发现页面点击按钮没有反应，应该是有效期过了，要重新返回登陆界面登陆）
+
 ![后台管理界面](http://wangbowen.cn/image/wxdyh/p4.png?1)
 
 ### 添加素材
@@ -152,7 +153,9 @@ if ("token".equals(message)) {
 ```
 解析：在注释之间添加根据用户发送的消息message来判断，从而实现相关的业务逻辑，示例中是获取token的方法，可以用于本地接口调试
 示例：
+
 ![自定义获取token](http://wangbowen.cn/image/wxdyh/p10.png)
+
 ```java
 /** ***************************************  以下添加自定义功能函数  ******************************************** */
 ```
@@ -175,26 +178,26 @@ return replayMessage(MaterialEnum type, Object obj, String toUserName);
  */
 private BaseResponseMessage replayMessage(MaterialEnum type, Object obj, String toUserName) {...}
 ```
-	* 返回文字示例
-	```java
-	return replayMessage(MaterialEnum.TEXT, "你要回复的是文字信息", sender); 
-	```
-	* 返回语音示例
-	```java
-	return replayMessage(MaterialEnum.VOICE, "你要回复的是语音素材ID，可以在后台管理素材中获取", sender);
-	```
-	* 返回图片示例
-	```java
-	return replayMessage(MaterialEnum.IMAGE, "你要回复的是图片素材ID，可以在后台管理素材中获取", sender);
-	```
-	* 返回视频示例
-	```java
-	Video video = new Video("视频素材ID", "视频素材标题", "视频描述");
-    return replayMessage(MaterialEnum.VIDEO, video, sender);
-	```
-	* 返回图文示例
-	```java
-	Item item = new Item("图文标题", "图文描述", "缩略图URL地址", "文章URL地址");
-    return replayMessage(MaterialEnum.NEWS, item, sender);
-	```
-	其中URL信息可以通过网页F12，对响应json进行查看。开发者也可以自行设计数据库存储或添加一个函数来根据素材ID获取其他信息（后续有时间就进行优化，其实规则部分就是采用这种方式，可以看parseRuleToResponseNeed(Rule rule)方法实现）
+* 返回文字示例
+```java
+return replayMessage(MaterialEnum.TEXT, "你要回复的是文字信息", sender); 
+```
+* 返回语音示例
+```java
+return replayMessage(MaterialEnum.VOICE, "你要回复的是语音素材ID，可以在后台管理素材中获取", sender);
+```
+* 返回图片示例
+```java
+return replayMessage(MaterialEnum.IMAGE, "你要回复的是图片素材ID，可以在后台管理素材中获取", sender);
+```
+* 返回视频示例
+```java
+Video video = new Video("视频素材ID", "视频素材标题", "视频描述");
+return replayMessage(MaterialEnum.VIDEO, video, sender);
+```
+* 返回图文示例
+```java
+Item item = new Item("图文标题", "图文描述", "缩略图URL地址", "文章URL地址");
+return replayMessage(MaterialEnum.NEWS, item, sender);
+```
+其中URL信息可以通过网页F12，对响应json进行查看。开发者也可以自行设计数据库存储或添加一个函数来根据素材ID获取其他信息（后续有时间就进行优化，其实规则部分就是采用这种方式，可以看parseRuleToResponseNeed(Rule rule)方法实现）
