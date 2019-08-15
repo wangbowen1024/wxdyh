@@ -96,7 +96,9 @@ mvn clean package
 15-Aug-2019 00:56:00.703 信息 [ContainerBackgroundProcessor[StandardEngine[Catalina]]] org.apache.catalina.startup.HostConfig.deployWAR Deployment of web application archive [C:\apache-tomcat-9.0.0.M26\webapps\wxdyh.war] has finished in [65,875] ms
 ```
 5. 打开浏览器输入项目首页URL（我的是http://wangbowen.cn/wxdyh即上面替换的URL），如果成功访问如下登陆界面即为部署成功
+
 ![登陆页面](http://wangbowen.cn/image/wxdyh/p1.png?2)
+
 6. 登陆微信开发平台，在基本配置中修改URL为“上面替换的URL/api”（如我的是http://wangbowen.cn/wxdyh/api）消息加密为明文，如需加密可以自行参考官方文档。然后提交（可能会遇到无效URL，多试几次可能是网络问题）然后点击启用。至此全部完成
 
 ## 自定义开发教程
@@ -152,6 +154,7 @@ if ("token".equals(message)) {
 /** ==================================      E      N      D      ============================================ */
 ```
 解析：在注释之间添加根据用户发送的消息message来判断，从而实现相关的业务逻辑，示例中是获取token的方法，可以用于本地接口调试
+
 示例：
 
 ![自定义获取token](http://wangbowen.cn/image/wxdyh/p10.png)
